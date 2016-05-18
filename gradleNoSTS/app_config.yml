@@ -1,0 +1,22 @@
+server:
+  rootPath: /*
+  applicationContextPath: /
+  applicationConnectors:
+    - type: http
+      port: 8080
+
+allowedOrigins:
+    - "*/*"
+
+#appName: H2 DB connection!
+
+#db settings
+database:
+  #the name of db, h2 in our case
+  driverClass: org.h2.Driver
+  #username
+  user: sa
+  #password
+  password: 
+  #JDBC URL
+  url: jdbc:h2:./target/DBconn
