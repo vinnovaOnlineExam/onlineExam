@@ -1,22 +1,36 @@
 package db;
 
+import java.util.List;
+
 import org.skife.jdbi.v2.sqlobject.Bind;
+import org.skife.jdbi.v2.sqlobject.BindBean;
 import org.skife.jdbi.v2.sqlobject.SqlQuery;
 import org.skife.jdbi.v2.sqlobject.SqlUpdate;
+import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapperFactory;
+import org.skife.jdbi.v2.tweak.BeanMapperFactory;
 
-public interface MyDAO
-{
-  @SqlUpdate("create table if not exists something (id int primary key, name varchar(100))")
-  void createSomethingTable();
+import sayingpack.UserSay;
 
-  @SqlUpdate("insert into something (id, name) values (:id, :name)")
-  void insert(@Bind("id") int id, @Bind("name") String name);
+@RegisterMapperFactory(BeanMapperFactory.class)
+public interface MyDAO {
+	@SqlUpdate("create table if not exists USERS (id int auto_increment primary key, name varchar(80), email varchar(80), password varchar(20))")
+	void createUserTable();
 
-  @SqlQuery("select name from something where id = :id")
-  String findNameById(@Bind("id") int id);
+	@SqlUpdate("insert into USERS (name, email, password) values (:name, :email, :password)")
+	void insert(@BindBean UserSay userSay);
 
-  /**
-   * close with no args is used to close the connection
-   */
-  void close();
+	@SqlUpdate("update USERS set name = :u.name, email = :u.email, password = :u.password where id = :id")
+	void update(@BindBean("u") UserSay userSay, @Bind("id") int id);
+
+	@SqlQuery("select * from USERS where id = :id")
+	UserSay findById(@Bind("id") int id);
+
+	@SqlQuery("select * from USERS")
+	List<UserSay> getAll();
+
+	@SqlUpdate("delete from USERS where id = :id")
+	void deleteById(@Bind int id);
+
+	@SqlUpdate("delete from USERS where email = :id")
+	void deleteByEmail(@Bind String email);;
 }
