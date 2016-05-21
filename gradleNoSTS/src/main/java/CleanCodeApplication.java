@@ -1,10 +1,17 @@
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.EnumSet;
 import java.util.List;
 
+import javax.servlet.DispatcherType;
+import javax.servlet.FilterRegistration.Dynamic;
+
+import org.eclipse.jetty.servlets.CrossOriginFilter;
 import org.h2.tools.Server;
 import org.skife.jdbi.v2.DBI;
+
+import com.google.common.base.Joiner;
 
 import db.MyDAO;
 import io.dropwizard.Application;
@@ -15,6 +22,8 @@ import resources.UserMgmnt;
 import sayingpack.UserSay;
 
 public class CleanCodeApplication extends Application<AppConfiguration> {
+
+	private static final String API_URL_PATTERN = "/api/*";
 
 	private static List<UserSay> users;
 
@@ -33,6 +42,8 @@ public class CleanCodeApplication extends Application<AppConfiguration> {
 
 	@Override
 	public void run(final AppConfiguration configuration, final Environment environment) throws SQLException {
+
+		configureCrossOriginFilter(configuration, environment);
 
 		HelloWorldResource helloWorldResource = new HelloWorldResource(configuration.getTemplate(),
 				configuration.getDefaultName());
@@ -57,6 +68,21 @@ public class CleanCodeApplication extends Application<AppConfiguration> {
 		for (UserSay u : users) {
 			myDAO.insert(u);
 		}
+	}
+
+	private void configureCrossOriginFilter(AppConfiguration configuration, Environment environment) {
+		String[] allowedOrigins = configuration.getAllowedOrigins();
+		if (allowedOrigins == null || allowedOrigins.length == 0) {
+			return;
+		}
+
+		Dynamic filter = environment.servlets().addFilter("CrossOriginFilter", CrossOriginFilter.class);
+		filter.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, API_URL_PATTERN);
+		filter.setInitParameter(CrossOriginFilter.ALLOWED_ORIGINS_PARAM, Joiner.on(',').join(allowedOrigins));
+		filter.setInitParameter(CrossOriginFilter.ALLOWED_HEADERS_PARAM,
+				"X-Requested-With,Content-Type,Accept,Accept-Language,Origin,Authorization");
+		filter.setInitParameter(CrossOriginFilter.ALLOWED_METHODS_PARAM, "GET,POST,PUT,DELETE");
+		filter.setInitParameter(CrossOriginFilter.ALLOW_CREDENTIALS_PARAM, "true");
 	}
 
 }

@@ -1,5 +1,4 @@
 
-
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -10,54 +9,61 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.Configuration;
 import io.dropwizard.db.DataSourceFactory;
 
-public class AppConfiguration extends Configuration{
-	
-	
+public class AppConfiguration extends Configuration {
+
 	@NotEmpty
 	private String template;
-	
+
 	@NotEmpty
 	private String defaultName = "Stranger";
-	
+
+	private String[] allowedOrigins;
+
 	@JsonProperty
-	public String getTemplate(){
+	public String getTemplate() {
 		return template;
 	}
+
 	@JsonProperty
-	public void setTemplate(String template){
+	public void setTemplate(String template) {
 		this.template = template;
 	}
-	
+
 	@JsonProperty
-	public String getDefaultName(){
+	public String getDefaultName() {
 		return defaultName;
 	}
+
 	@JsonProperty
-	public void setDefaultName(String name){
+	public void setDefaultName(String name) {
 		this.defaultName = name;
 	}
-	
-	
+
 	@NotNull
 	@Valid
 	private DataSourceFactory dataSourceFactory = new DataSourceFactory();
-	
+
 	@JsonProperty("database")
-	public DataSourceFactory getDataSourceFactory(){
+	public DataSourceFactory getDataSourceFactory() {
 		return dataSourceFactory;
 	}
-	/*@NotEmpty
-	private String appName;
-	
+
 	@JsonProperty
-	public String getAppName(){
-		return appName;
+	public String[] getAllowedOrigins() {
+		return allowedOrigins;
 	}
-	
+
 	@JsonProperty
-	public void setAppName(final String appName){
-		this.appName = appName;
-	}*/
-	
-	
+	public void setAllowedOrigins(String[] allowedOrigins) {
+		this.allowedOrigins = allowedOrigins;
+	}
+	/*
+	 * @NotEmpty private String appName;
+	 * 
+	 * @JsonProperty public String getAppName(){ return appName; }
+	 * 
+	 * @JsonProperty public void setAppName(final String appName){ this.appName
+	 * = appName; }
+	 */
+
 }

@@ -1,6 +1,15 @@
+server:
+  rootPath: /api/*
+  applicationContextPath: /
+  applicationConnectors:
+    - type: http
+      port: 8080
+
+allowedOrigins:
+    - "*"
+
 template: Hello, %s!
 defaultName: Strange
-#appName: H2 DB connection!
 
 #db settings
 database:
