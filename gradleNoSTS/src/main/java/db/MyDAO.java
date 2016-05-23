@@ -28,9 +28,9 @@ public interface MyDAO {
 	@SqlQuery("select * from USERS")
 	List<UserSay> getAll();
 
-	@SqlUpdate("delete from USERS where id = :id")
+	@SqlUpdate("delete from USERS where id = :it")
 	void deleteById(@Bind int id);
 
-	@SqlUpdate("delete from USERS where email = :id")
+	@SqlUpdate("delete from USERS where email = :it")
 	void deleteByEmail(@Bind String email);;
 }
