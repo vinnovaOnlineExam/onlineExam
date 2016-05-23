@@ -53,8 +53,10 @@ public class UserMgmnt {
 	public void save(UserSay userSay) {
 		if (userSay != null) {
 			myDAO.insert(userSay);
+		} else {
+			throw new WebApplicationException(Status.BAD_REQUEST);
 		}
-		throw new WebApplicationException(Status.BAD_REQUEST);
+
 	}
 
 	@PUT
@@ -75,6 +77,7 @@ public class UserMgmnt {
 
 		if (myDAO.findById(id) != null) {
 			myDAO.deleteById(id);
+			throw new WebApplicationException(Response.Status.OK);
 		} else {
 			throw new WebApplicationException(Response.Status.NOT_FOUND);
 		}
