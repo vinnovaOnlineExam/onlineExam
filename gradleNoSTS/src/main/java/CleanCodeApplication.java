@@ -11,10 +11,12 @@ import org.skife.jdbi.v2.DBI;
 import com.google.common.base.Joiner;
 
 import db.MyDAO;
+import db.QuesDAO;
 import io.dropwizard.Application;
 import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.setup.Environment;
 import resources.HelloWorldResource;
+import resources.QuestMgmnt;
 import resources.UserMgmnt;
 
 public class CleanCodeApplication extends Application<AppConfiguration> {
@@ -42,9 +44,15 @@ public class CleanCodeApplication extends Application<AppConfiguration> {
 		MyDAO myDAO = jdbi.onDemand(MyDAO.class);
 		myDAO.createUserTable();
 
+		QuesDAO quesDAO = jdbi.onDemand(QuesDAO.class);
+		quesDAO.createQuestTable();
+
 		// environment.addResource(new UserMgmnt(myDAO));
 		UserMgmnt userMgmt = new UserMgmnt(myDAO);
 		environment.jersey().register(userMgmt);
+
+		QuestMgmnt questMgmnt = new QuestMgmnt(quesDAO);
+		environment.jersey().register(questMgmnt);
 
 	}
 
