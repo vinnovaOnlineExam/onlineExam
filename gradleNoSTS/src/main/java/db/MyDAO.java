@@ -32,5 +32,19 @@ public interface MyDAO {
 	void deleteById(@Bind int id);
 
 	@SqlUpdate("delete from USERS where email = :it")
-	void deleteByEmail(@Bind String email);;
+	void deleteByEmail(@Bind String email);
+	
+	@SqlUpdate("create table if not exists QUESTIONS (id int auto_increment primary key, question varchar(255), topic varchar(80), opa varchar(80), opb varchar(80), opc varchar(80), corr_op varchar(80))")
+	void createQuestTable();
+	
+	@SqlUpdate("insert into QUESTIONS (question, topic, opa, opb, opc, corr_op) values (:question, :topic, :opa, :opb, :opc, :corr_op)")
+	void insertQues(@BindBean UserSay userSay);
+	
+	@SqlUpdate("update QUESTIONS set question = :u.question, topic = :u.topic, opa = :u.opa, opb = :u.opb, opc = :u.opc, corr_op = :u.corr_op where id = :id")
+	void updateQues(@BindBean("u") UserSay userSay, @Bind("id") int id);
+	
+	@SqlQuery("select * from QUESTIONS where id = :id")
+	UserSay findQuesById(@Bind("id") int id);
+	
+	
 }
