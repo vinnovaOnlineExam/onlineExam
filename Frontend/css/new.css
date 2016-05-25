@@ -1,0 +1,13 @@
+body {
+    background-color: #ffffff;
+    font-family: sans-serif;
+}
+
+.dropdown {
+    padding: 13px 30px;
+    width: 200px;
+    vertical-align: middle;
+    margin: 0 auto;
+    text-align: center;
+}
+
