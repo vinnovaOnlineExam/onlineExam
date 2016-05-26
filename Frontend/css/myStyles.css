@@ -2,6 +2,12 @@
 margin:0px auto;
     padding: 0px auto;
 }
+#content{
+    margin:0px auto;
+    padding: 50px 0px 50px 0px;
+    border-bottom: 1px ridge;
+    min-height: 400px;
+        }
 .row-content{
     margin:0px auto;
     padding: 50px 0px 50px 0px;
@@ -12,14 +18,14 @@ margin:0px auto;
     margin:0px auto;
     padding: 0px auto;
     border: 1px floralwhite;
-    background-color: transparent;
+    background-color: whitesmoke;
 }
 .jumbotron {
     margin: 0px auto;
     padding: 70px 0px 70px 0px;
     border-bottom: 1px ridge;
     min-height: 400px;
-    background-color: transparent;
+    color: white;
 }
 .navbar-header img{
     width:50px;
@@ -33,3 +39,22 @@ margin:0px auto;
     border: 1px ridge;
     background-color: white;
 }
+.modal
+{
+    margin: 0px auto;
+   /* border: 1px ridge;*/
+    padding: 70px 0px 70px 0px;
+    float: inherit;
+    width: 60%;
+    height: 80%;
+}
+#login .col-sm-3
+{
+    margin: 0px auto;
+  /*  border: 1px ridge;*/
+}
+body {
+    /*font-family: 'Oswald', sans-serif;*/
+    font-family: 'Tangerine', serif;
+    font-size: large;
+    }
