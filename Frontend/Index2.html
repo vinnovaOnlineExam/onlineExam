@@ -1,6 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html" ng-app="myModule">
 <head>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.min.js"></script>
+    <script src="js/myscript.js"></script>
+    <script src="js/jquery-1.12.4.js"></script>
+    <script src="js/bootstrap.min.js" ></script>
     <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
     <title>Softhouse AB</title>
     <meta charset="utf-8">
@@ -13,11 +18,12 @@
     <link href="css/myStyles.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/bootstrap-social.css" rel="stylesheet">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-  </head>
-<body>
+
+ </head>
+
+<body >
 <nav class="navbar navbar-fixed-top" role="navigation">
-    <div class="container">
+    <div class="container ">
         <div class="navbar-header">
             <a class="navbar-brand" href="#">
                 <img src="images/Capture.JPG" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -25,36 +31,26 @@
         </div>
 
         <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="#"><b><span class="glyphicon glyphicon-home"
+            <li ><a href="#/exam"><b><i class="fa fa-laptop" aria-hidden="true"></i>Exam</b></a></li>
+            <li ><a href="#/home"><b><span class="glyphicon glyphicon-home"
                                                     aria-hidden="true"></span>Home</b></a></li>
-            <li ><a href="#"><b>About</b></a></li>
-            <li ><a href="#"><b>Contact</b></a></li>
-            <li ><a href="#"><b>SignIn</b></a></li>
+            <li ><a href="#/about"><b><span class="glyphicon glyphicon-info-sign"></span>About</b></a></li>
+            <li ><a href="#top"><b><i class="fa fa-phone"></i>Contact</b></a></li>
+            <li class="active"><a href="#/career" data-toggle="modal_carrier"><b><i class="fa fa-graduation-cap" aria-hidden="true"></i>Career</b></a></li>
+            <li ><a href="#signin" data-toggle="modal"><b><span class="glyphicon glyphicon-user"></span>SignIn</b></a></li>
+
         </ul>
         </div>
     </nav>
-<div class="jumbotron">
-    <div class="container">
-        <div class="row row-header">
-            <div class="col-xs-12 col-sm-8">
-                <h2>SoftHouse Consulting Baltic AB</h2>
-                <p style="padding:40px;"></p>
-                <p>We take pride in being an exceptionally responsive and flexible supplier that gives you full insight into the development of your solution.</p>
-            </div>
-            <div class="col-xs-12 col-sm-4">
-                </div>
-        </div>
-    </div>
+<div class="container" id="content">
+    <ng-view></ng-view>
+
 </div>
-<div class="container">
-    <div class="row row-content">
-        </div>
-    </div>
 <footer>
     <div class="container">
         <div class="row row-footer">
-        <div class="col-xs-3 col-sm-5">
-            Follow us At:<br>
+        <div class="col-xs-3 col-sm-3">
+            <h3>Follow us At:</h3>
             <div class="nav navbar-nav" style="padding: 40px 10px;">
                 <a class="btn btn-social-icon btn-google-plus" href="http://google.com/+"><i class="fa fa-google-plus"></i></a>
                 <a class="btn btn-social-icon btn-facebook" href="http://www.facebook.com/profile.php?id="><i class="fa fa-facebook"></i></a>
@@ -63,22 +59,30 @@
                 <a class="btn btn-social-icon btn-youtube" href="http://youtube.com/"><i class="fa fa-youtube"></i></a>
                 <a class="btn btn-social-icon" href="mailto:"><i class="fa fa-envelope-o"></i></a>
             </div>
+
         </div>
-        <div class=" col-xs-5 col-sm-3">
-            Address:<br><br>
+        <div class=" col-xs-5 col-sm-3 col-sm-push-2">
+            <h3>Address:</h3><br>
             Campus Gräsvik 3A,
             37175,
             Karlskrona,
             Blekinge Lan,
-            Sweden.<br><br>
-            <i class="fa fa-envelope"></i>: Email: <a href="mailto:jitendra.jjr@gmail.com">softhouse@gmail.com</a>
+            Sweden. <br>
+            <i class="fa fa-envelope"></i>: Email: <a href="mailto:jitendra.jjr@gmail.com">softhouse@gmail.com</a><br><br>
+            <div class="btn-group-justified" role="group" aria-label="...">
+                <a type="button" class="btn btn-primary" href="tel:+46767702027"><i class="fa fa-phone"></i>Phone</a>
+                <a type="button" class="btn btn-info" ><i class="fa fa-skype">Skype</i></a>
+                <a type="button" class="btn btn-success" href="mailTo:jitendra.jjr@gmail.com"><i class="fa fa-envelope-o"></i>Email</a>
+
+            </div>
         </div>
-        <div class=" col-xs-4 col-sm-4" align="right">
-            Contact Us:<br><br>
+        <div class=" col-xs-4 col-sm-6" align="right">
+            <h3 id="top">Contact Us:</h3><br>
             <ul style="list-style:none">
                 <li> <i class="fa fa-phone"></i>: +46767702027</li><br>
                 <li> <i class="fa fa-phone"></i>: +46770202645</li><br>
                 <li><i class="fa fa-fax"></i>: +46767703456</li><br>
+
             </ul>
          </div>
         </div>
@@ -88,6 +92,51 @@
             </div>
 
 </footer>
+<div class="modal fade " id="signin" role="dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h3>Welcome. Please login.</h3>
+        </div>
+        <div class="modal-body">
+            <div class="container" id="login">
+                <div class="row" >
+                    <div class="col-sm-8">
+                <form class="form-horizontal " role="form">
+                    <div class="row">
+                        <div class="form-group">
+                         <label for="username" class="col-sm-4 col-lg-pull-1 control-label">Email:</label>
+                        <div class="col-sm-4 col-sm-pull-1">
+                        <input type="text" class="form-control" id="username" name="Username" placeholder="Enter email" autofocus>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="password" class="col-sm-4 col-lg-pull-1 control-label">Password:</label>
+                        <div class="col-sm-4 col-sm-pull-1">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
+                        </div>
+                </div>
+                    <div class="row " >
+                            <div class="col-sm-5 col-sm-push-3">
+                               <a class="btn btn-link" href="">Forgot password?</a>
+                            </div>
+                </div>
+                    </div>
+                </form>
+                       </div>
+                    <div class="col-sm-4 col-sm-pull-3"> Do not have an account?<br> <a href="" class="btn btn-link">Click here to register</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a class="btn btn-default" data-dismiss="modal">Login</a>
+            <a class="btn btn-primary" data-dismiss="modal">Cancel</a>
+        </div>
+    </div>
+</div>
+
+
 
 </body>
 </html>

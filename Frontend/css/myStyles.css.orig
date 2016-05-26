@@ -1,0 +1,80 @@
+.row-header{
+margin:0px auto;
+    padding: 0px auto;
+}
+#content{
+    margin:0px auto;
+    padding: 50px 0px 50px 0px;
+    border-bottom: 1px ridge;
+    min-height: 400px;
+        }
+.row-content{
+    margin:0px auto;
+    padding: 50px 0px 50px 0px;
+    border-bottom: 1px ridge;
+    min-height: 400px;
+}
+.row-footer{
+    margin:0px auto;
+    padding: 0px auto;
+    border: 1px floralwhite;
+    background-color: whitesmoke;
+}
+.jumbotron {
+    margin: 0px auto;
+    padding: 70px 0px 70px 0px;
+    border-bottom: 1px ridge;
+    min-height: 400px;
+    color: white;
+}
+.navbar-header img{
+    width:50px;
+    height:50px;
+    position:fixed;
+    top:0px;
+    }
+.navbar
+{
+    margin: 0px auto;
+    border: 1px ridge;
+    background-color: white;
+}
+<<<<<<< HEAD
+.modal
+{
+    margin: 0px auto;
+   /* border: 1px ridge;*/
+    padding: 70px 0px 70px 0px;
+    float: inherit;
+    width: 60%;
+    height: 80%;
+}
+#login .col-sm-3
+{
+    margin: 0px auto;
+  /*  border: 1px ridge;*/
+}
+body {
+    /*font-family: 'Oswald', sans-serif;*/
+    font-family: 'Tangerine', serif;
+    font-size: large;
+    }
+=======
+.navbar-inverse
+{
+    background: #101010
+}
+body
+{
+    padding:50px 0px 0px 0px;
+}
+.jumbotron
+{
+    font-color: #ea6602
+}
+footer
+{
+    background: #ea6602;
+    padding:0px 50px 50px 0px;
+}
+>>>>>>> refs/remotes/origin/master

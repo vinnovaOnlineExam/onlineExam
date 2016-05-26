@@ -1,44 +1,23 @@
 .row-header{
 margin:0px auto;
+/*    border: 1px ridge;*/
     padding: 0px auto;
 }
-#content{
-    margin:0px auto;
-    padding: 50px 0px 50px 0px;
-    border-bottom: 1px ridge;
-    min-height: 400px;
-}
+
 .row-content{
     margin:0px auto;
-    padding: 50px 0px 50px 0px;
-    border-bottom: 1px ridge;
-    min-height: 400px;
-}
-.row-footer{
-    margin:0px auto;
-    padding: 0px auto;
-    border: 1px floralwhite;
-    background-color: transparent;
+    padding: 30px 0px 30px 0px;
+   /* border: 1px ridge;*/
+    min-height: 200px;
 }
 .jumbotron {
     margin: 0px auto;
     padding: 70px 0px 70px 0px;
-    border-bottom: 1px ridge;
-    min-height: 400px;
-    background-color: transparent;
+    /*border-bottom: 1px ridge;*/
+    min-height: 200px;
+    color: white;
 }
-.navbar-header img{
-    width:50px;
-    height:50px;
-    position:fixed;
-    top:0px;
-    }
-.navbar
-{
-    margin: 0px auto;
-    border: 1px ridge;
-    background-color: white;
-}
+
 .modal
 {
     margin: 0px auto;
@@ -57,3 +36,8 @@ body {
     /*font-family: 'Oswald', sans-serif;*/
     font-family: 'Tangerine', serif;
     }
+#career {
+    top: 100px;
+    margin: 0 0 3px 0;
+    padding: 70px 0px 70px 0px;
+}
