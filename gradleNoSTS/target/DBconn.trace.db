@@ -146,3 +146,9 @@ insert into something2(name) values ("hehe") [42122-176]
 05-20 10:51:48 jdbc[12]: exception
 org.h2.jdbc.JdbcSQLException: Table "USERS" already exists; SQL statement:
 /* MyDAO.createUserTable */ create table USERS (id int auto_increment primary key, name varchar(80), email varchar(80), password varchar(20)) [42101-176]
+05-24 13:39:04 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (QUESTIONS: ID INT DEFAULT (NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_18413E37_BC7B_49EE_B8DA_9C1FDE9A9C16) NOT NULL NULL_TO_DEFAULT SEQUENCE PUBLIC.SYSTEM_SEQUENCE_18413E37_BC7B_49EE_B8DA_9C1FDE9A9C16)"; SQL statement:
+INSERT INTO "PUBLIC"."QUESTIONS"("ID","QUESTION","TOPIC","OPA","OPB","OPC","CORR_OP")VALUES(?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7) [22018-176]
+05-24 13:39:04 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "'' (QUESTIONS: ID INT DEFAULT (NEXT VALUE FOR PUBLIC.SYSTEM_SEQUENCE_18413E37_BC7B_49EE_B8DA_9C1FDE9A9C16) NOT NULL NULL_TO_DEFAULT SEQUENCE PUBLIC.SYSTEM_SEQUENCE_18413E37_BC7B_49EE_B8DA_9C1FDE9A9C16)"; SQL statement:
+INSERT INTO "PUBLIC"."QUESTIONS"("ID","QUESTION","TOPIC","OPA","OPB","OPC","CORR_OP")VALUES(?,?,?,?,?,?,?) -- (?1, ?2, ?3, ?4, ?5, ?6, ?7) [22018-176]
