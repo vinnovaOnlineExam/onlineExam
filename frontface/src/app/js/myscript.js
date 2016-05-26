@@ -10,8 +10,8 @@
                 controller: "homeController"
             })
             .when("/exam", {
-                templateUrl: "templates/exam.html",
-                controller: "examController"
+                templateUrl: "add_questions.html",
+                controller: "PostQuestionController"
             })
             .when("/about", {
                 templateUrl: "templates/aboutus.html",
@@ -24,8 +24,34 @@
     })
                  .controller("homeController",function ($scope) {
 
-    })
-                 .controller("examController",function ($scope) {
+                   })
+                 .controller("PostQuestionController",function ($scope, $http) {
+                   $scope.question={};
+
+                  // $http.post('http://localhost:8080/api/questions',{"question":"How dodfsfadf you greet?","topic":"general","opa":"namasthe","opb":"hejsan","opc":"tjena","corr_op":"opa"})
+
+                   $scope.SubmitAddQuestionForm = function(){
+                     //posting data
+                     $http.post('http://localhost:8080/api/questions',$scope.question)
+
+
+                       .success(function(data){
+                         if(data.errors){
+                           $scope.iyyayyo=data.errors;
+                         }
+                         else $scope.question = null;
+                       })
+
+                   };
+                   $scope.GetQuestionsFromDB = function(){
+                     //posting data
+                     $http.get('http://localhost:8080/api/questions')
+                       .then(function(response){
+                         $scope.questionGot=response.data;
+                       })
+
+                   };
+
 
                  })
                  .controller("aboutController",function ($scope) {
