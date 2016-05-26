@@ -10,16 +10,16 @@ import org.skife.jdbi.v2.DBI;
 
 import com.google.common.base.Joiner;
 
-import db.MyDAO;
-import db.QuesDAO;
+import databaseDAO.QuestionDAO;
+import databaseDAO.UserDAO;
 import io.dropwizard.Application;
 import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.setup.Environment;
 import resources.HelloWorldResource;
-import resources.QuestMgmnt;
-import resources.UserMgmnt;
+import resources.QuestionResource;
+import resources.UserResource;
 
-public class CleanCodeApplication extends Application<AppConfiguration> {
+public class CleanCodeApplication extends Application<ApplicationConfiguration> {
 
 	private static final String API_URL_PATTERN = "/api/*";
 
@@ -28,7 +28,7 @@ public class CleanCodeApplication extends Application<AppConfiguration> {
 	}
 
 	@Override
-	public void run(final AppConfiguration configuration, final Environment environment) throws SQLException {
+	public void run(final ApplicationConfiguration configuration, final Environment environment) throws SQLException {
 
 		configureCrossOriginFilter(configuration, environment);
 
@@ -41,22 +41,22 @@ public class CleanCodeApplication extends Application<AppConfiguration> {
 		Server myH2adminGUI = org.h2.tools.Server.createWebServer("-webDaemon");
 		myH2adminGUI.start();
 
-		MyDAO myDAO = jdbi.onDemand(MyDAO.class);
-		myDAO.createUserTable();
+		UserDAO userDAO = jdbi.onDemand(UserDAO.class);
+		userDAO.createUserTable();
 
-		QuesDAO quesDAO = jdbi.onDemand(QuesDAO.class);
-		quesDAO.createQuestTable();
+		QuestionDAO questionDAO = jdbi.onDemand(QuestionDAO.class);
+		questionDAO.createQuestionTable();
 
 		// environment.addResource(new UserMgmnt(myDAO));
-		UserMgmnt userMgmt = new UserMgmnt(myDAO);
-		environment.jersey().register(userMgmt);
+		UserResource userResource = new UserResource(userDAO);
+		environment.jersey().register(userResource);
 
-		QuestMgmnt questMgmnt = new QuestMgmnt(quesDAO);
-		environment.jersey().register(questMgmnt);
+		QuestionResource questionResource = new QuestionResource(questionDAO);
+		environment.jersey().register(questionResource);
 
 	}
 
-	private void configureCrossOriginFilter(AppConfiguration configuration, Environment environment) {
+	private void configureCrossOriginFilter(ApplicationConfiguration configuration, Environment environment) {
 		String[] allowedOrigins = configuration.getAllowedOrigins();
 		if (allowedOrigins == null || allowedOrigins.length == 0) {
 			return;

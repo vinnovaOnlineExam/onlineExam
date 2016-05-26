@@ -1,4 +1,4 @@
-package sayingpack;
+package core;
 
 import org.hibernate.validator.constraints.Length;
 

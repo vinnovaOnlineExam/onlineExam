@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.Configuration;
 import io.dropwizard.db.DataSourceFactory;
 
-public class AppConfiguration extends Configuration {
+public class ApplicationConfiguration extends Configuration {
 
 	@NotEmpty
 	private String template;

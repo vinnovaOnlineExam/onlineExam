@@ -17,24 +17,24 @@ import javax.ws.rs.core.Response.Status;
 
 import com.codahale.metrics.annotation.Timed;
 
-import db.MyDAO;
-import sayingpack.UserSay;
+import core.User;
+import databaseDAO.UserDAO;
 
 @Path("/users")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class UserMgmnt {
-	private MyDAO myDAO;
+public class UserResource {
+	private UserDAO myDAO;
 
-	public UserMgmnt(MyDAO dao) {
+	public UserResource(UserDAO dao) {
 		myDAO = dao;
 	}
 
 	@GET
 	@Path("/{id}")
 	@Timed
-	public UserSay getUser(@PathParam("id") Integer id) {
-		UserSay u = myDAO.findById(id);
+	public User getUser(@PathParam("id") Integer id) {
+		User u = myDAO.findUserById(id);
 		if (u != null) {
 			return u;
 		} else {
@@ -44,15 +44,15 @@ public class UserMgmnt {
 
 	@GET
 	@Timed
-	public List<UserSay> listUsers() {
-		return myDAO.getAll();
+	public List<User> listUsers() {
+		return myDAO.getAllUsers();
 	}
 
 	@POST
 	@Timed
-	public void save(UserSay userSay) {
+	public void saveUser(User userSay) {
 		if (userSay != null) {
-			myDAO.insert(userSay);
+			myDAO.insertUser(userSay);
 			throw new WebApplicationException(Response.Status.OK);
 		} else {
 			throw new WebApplicationException(Status.BAD_REQUEST);
@@ -62,9 +62,9 @@ public class UserMgmnt {
 
 	@PUT
 	@Path("/{id}")
-	public void update(@PathParam("id") int id, UserSay userSay) {
+	public void updateUser(@PathParam("id") int id, User userSay) {
 		if (userSay != null) {
-			myDAO.update(userSay, id);
+			myDAO.updateUser(userSay, id);
 			throw new WebApplicationException(Response.Status.OK);
 		} else {
 			throw new WebApplicationException(Status.BAD_REQUEST);
@@ -77,8 +77,8 @@ public class UserMgmnt {
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.TEXT_PLAIN })
 	public void deleteUser(@PathParam("id") Integer id) {
 
-		if (myDAO.findById(id) != null) {
-			myDAO.deleteById(id);
+		if (myDAO.findUserById(id) != null) {
+			myDAO.deleteUserById(id);
 			throw new WebApplicationException(Response.Status.OK);
 		} else {
 			throw new WebApplicationException(Response.Status.NOT_FOUND);

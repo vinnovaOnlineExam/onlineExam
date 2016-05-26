@@ -12,7 +12,7 @@ import javax.ws.rs.core.MediaType;
 import com.codahale.metrics.annotation.Timed;
 import com.google.common.base.Optional;
 
-import sayingpack.Saying;
+import core.Saying;
 
 @Path("/hello-world")
 @Produces(MediaType.APPLICATION_JSON)

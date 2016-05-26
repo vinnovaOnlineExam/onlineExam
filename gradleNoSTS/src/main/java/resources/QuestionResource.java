@@ -17,24 +17,24 @@ import javax.ws.rs.core.Response.Status;
 
 import com.codahale.metrics.annotation.Timed;
 
-import db.QuesDAO;
-import sayingpack.QuestSay;
+import core.Question;
+import databaseDAO.QuestionDAO;
 
 @Path("/questions")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class QuestMgmnt {
-	private QuesDAO quesDAO;
+public class QuestionResource {
+	private QuestionDAO questionDAO;
 
-	public QuestMgmnt(QuesDAO dao) {
-		quesDAO = dao;
+	public QuestionResource(QuestionDAO dao) {
+		questionDAO = dao;
 	}
 
 	@GET
 	@Path("/{id}")
 	@Timed
-	public QuestSay getQuestion(@PathParam("id") Integer id) {
-		QuestSay q = quesDAO.findQuesById(id);
+	public Question getQuestion(@PathParam("id") Integer id) {
+		Question q = questionDAO.findQuestionById(id);
 		if (q != null) {
 			return q;
 		} else {
@@ -44,15 +44,15 @@ public class QuestMgmnt {
 
 	@GET
 	@Timed
-	public List<QuestSay> listQues() {
-		return quesDAO.getAllQues();
+	public List<Question> listQuestions() {
+		return questionDAO.getAllQuestions();
 	}
 
 	@POST
 	@Timed
-	public void saveQues(QuestSay questSay) {
-		if (questSay != null) {
-			quesDAO.insertQues(questSay);
+	public void saveQuestion(Question questionSay) {
+		if (questionSay != null) {
+			questionDAO.insertQuestion(questionSay);
 			throw new WebApplicationException(Response.Status.OK);
 		} else {
 			throw new WebApplicationException(Status.BAD_REQUEST);
@@ -62,9 +62,9 @@ public class QuestMgmnt {
 
 	@PUT
 	@Path("/{id}")
-	public void update(@PathParam("id") int id, QuestSay questSay) {
-		if (questSay != null) {
-			quesDAO.updateQues(questSay, id);
+	public void updateQuestion(@PathParam("id") int id, Question questionSay) {
+		if (questionSay != null) {
+			questionDAO.updateQuestion(questionSay, id);
 			throw new WebApplicationException(Response.Status.OK);
 		} else {
 			throw new WebApplicationException(Status.BAD_REQUEST);
@@ -75,10 +75,10 @@ public class QuestMgmnt {
 	@Path("/{id}")
 	@Timed
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.TEXT_PLAIN })
-	public void deleteQuest(@PathParam("id") Integer id) {
+	public void deleteQuestion(@PathParam("id") Integer id) {
 
-		if (quesDAO.findQuesById(id) != null) {
-			quesDAO.deleteQuesById(id);
+		if (questionDAO.findQuestionById(id) != null) {
+			questionDAO.deleteQuestionById(id);
 			throw new WebApplicationException(Response.Status.OK);
 		} else {
 			throw new WebApplicationException(Response.Status.NOT_FOUND);

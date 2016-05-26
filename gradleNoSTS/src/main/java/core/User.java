@@ -1,23 +1,23 @@
-package sayingpack;
+package core;
 
-public class UserSay {
+public class User {
 	private Integer id;
 	private String name;
 	private String email;
 	private String password;
 
-	public UserSay() {
+	public User() {
 
 	}
 
-	public UserSay(String name, String email, String password) {
+	public User(String name, String email, String password) {
 		super();
 		this.name = name;
 		this.email = email;
 		this.password = password;
 	}
 
-	public UserSay(String name, String email) {
+	public User(String name, String email) {
 		super();
 		this.name = name;
 		this.email = email;

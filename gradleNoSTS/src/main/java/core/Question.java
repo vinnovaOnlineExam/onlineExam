@@ -1,6 +1,6 @@
-package sayingpack;
+package core;
 
-public class QuestSay {
+public class Question {
 	private Integer id;
 	private String question;
 	private String topic;
@@ -9,24 +9,24 @@ public class QuestSay {
 	private String opc;
 	private String corr_op;
 
-	public QuestSay() {
+	public Question() {
 		super();
 	}
 
-	public QuestSay(Integer id, String question) {
+	public Question(Integer id, String question) {
 		super();
 		this.id = id;
 		this.question = question;
 	}
 
-	public QuestSay(Integer id, String question, String topic) {
+	public Question(Integer id, String question, String topic) {
 		super();
 		this.id = id;
 		this.question = question;
 		this.topic = topic;
 	}
 
-	public QuestSay(Integer id, String question, String topic, String opa) {
+	public Question(Integer id, String question, String topic, String opa) {
 		super();
 		this.id = id;
 		this.question = question;
@@ -34,7 +34,7 @@ public class QuestSay {
 		this.opa = opa;
 	}
 
-	public QuestSay(Integer id, String question, String topic, String opa, String opb) {
+	public Question(Integer id, String question, String topic, String opa, String opb) {
 		super();
 		this.id = id;
 		this.question = question;
@@ -43,7 +43,7 @@ public class QuestSay {
 		this.opb = opb;
 	}
 
-	public QuestSay(Integer id, String question, String topic, String opa, String opb, String opc) {
+	public Question(Integer id, String question, String topic, String opa, String opb, String opc) {
 		super();
 		this.id = id;
 		this.question = question;
@@ -53,7 +53,7 @@ public class QuestSay {
 		this.opc = opc;
 	}
 
-	public QuestSay(Integer id, String question, String topic, String opa, String opb, String opc, String corr_op) {
+	public Question(Integer id, String question, String topic, String opa, String opb, String opc, String corr_op) {
 		super();
 		this.id = id;
 		this.question = question;
