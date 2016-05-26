@@ -33,3 +33,20 @@ margin:0px auto;
     border: 1px ridge;
     background-color: white;
 }
+.navbar-inverse
+{
+    background: #101010
+}
+body
+{
+    padding:50px 0px 0px 0px;
+}
+.jumbotron
+{
+    font-color: #ea6602
+}
+footer
+{
+    background: #ea6602;
+    padding:0px 50px 50px 0px;
+}
