@@ -52,10 +52,17 @@ $scope.login=function () {
       $log.info(response);
     })
 
+
+  $http.get('http://localhost:8080/api/questions')
+    .then(function (response) {
+      $scope.quest = response.data;
+      $log.info(response);
+    })
+
 })
-  
-.controller('hard',function ($scope) {
-  
+
+.controller('hard',function ($scope,$http,$log) {
+
 
 
 })

@@ -1,0 +1,43 @@
+.row-header{
+margin:0px auto;
+/*    border: 1px ridge;*/
+    padding: 0px auto;
+}
+
+.row-content{
+    margin:0px auto;
+    padding: 30px 0px 30px 0px;
+   /* border: 1px ridge;*/
+    min-height: 200px;
+}
+.jumbotron {
+    margin: 0px auto;
+    padding: 70px 0px 70px 0px;
+    /*border-bottom: 1px ridge;*/
+    min-height: 200px;
+    color: white;
+}
+
+.modal
+{
+    margin: 0px auto;
+   /* border: 1px ridge;*/
+    padding: 70px 0px 70px 0px;
+    float: inherit;
+    width: 60%;
+    height: 80%;
+}
+#login .col-sm-3
+{
+    margin: 0px auto;
+  /*  border: 1px ridge;*/
+}
+body {
+    /*font-family: 'Oswald', sans-serif;*/
+    font-family: 'Tangerine', serif;
+    }
+#career {
+    top: 100px;
+    margin: 0 0 3px 0;
+    padding: 70px 0px 70px 0px;
+}
