@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>
+  <meta charset="UTF-8">
         <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
         <title>Softhouse AB</title>
         <meta charset="utf-8">
@@ -10,12 +9,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- Latest compiled and minified CSS -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/bootstrap-theme.min.css" rel="stylesheet">
-        <link href="css/myStyles.css" rel="stylesheet">
-        <link href="css/new.css" rel="stylesheet">
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/bootstrap-theme.min.css" rel="stylesheet">
+        <link href="../css/myStyles.css" rel="stylesheet">
+        <link href="../css/new.css" rel="stylesheet">
         <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/bootstrap-social.css" rel="stylesheet">
+        <link href="../css/bootstrap-social.css" rel="stylesheet">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     </title>
 </head>
@@ -23,16 +22,17 @@
 <div  class="container">
     <div class="row row-content">
         <div class="col-xs-12 col-sm-9" ng-controller="PostQuestionController">
+
           <p>{{question}}</p>
           <p>{{iyyayyo}}</p>
             <form name="AddQuestionsForm" ng-submit="SubmitAddQuestionForm()" class="form-horizontal" role="form">
                 <div class="form-group">
                     <label for="top" class="col-sm-3 control-label"></label>
                     <div class="col-sm-9" align="center">
-                        <select class='dropdown' name="topic" ng-model="question.topic">
-                          <option value="" disabled selected >Select the Topic</option>
-                                        <option>General</option>
-                                        <option>HTML 5</option>
+                        <select class='dropdown' name="topic" ng-model="question.topic" style="width: auto; height: auto">
+                          <option value="" disabled selected>Select the topic</option>
+                          <option>General</option>
+                          <option>HTML 5</option>
                                         <option>CSS 3</option>
                                         <option>AngularJS</option>
                                         <option>Java</option>
@@ -59,7 +59,7 @@
                         <div class="row"><input name="opc" ng-model="question.opc" type="text" id="opc"></div>
                     </div>
                 </div>
-                <div class="col-sm-6 panel panel-primary">
+                <div class="col-sm-6 col-sm-push-2 panel panel-primary">
                     <div class="panel-heading" align="center">
                         <label class="control-label panel-title">Select the Correct Answer</label>
                     </div>
@@ -73,7 +73,7 @@
                 <div class="form-group">
 
                     <div class="col-sm-6 col-sm-offset-6" align="center">
-                        <button type="submit" class="col-sm-6 btn btn-info-sky">Submit</button>
+                        <button type="submit" class="col-sm-6 col-sm-pull-1 btn btn-info-sky">Submit</button>
                         <button type="reset" class="col-sm-6 btn btn-warning ">Reset</button>
                     </div>
                 </div>

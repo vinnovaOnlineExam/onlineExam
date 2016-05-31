@@ -9,6 +9,18 @@
                 templateUrl: "templates/home.html",
                 controller: "homeController"
             })
+          .when("/contact", {
+            templateUrl: "templates/contact.html",
+            controller: "contactController"
+          })
+          .when("/addquestion", {
+            templateUrl: "templates/add_questions.html",
+            controller: "addquestionController"
+          })
+          .when("/viewexam", {
+            templateUrl: "templates/viewexam.html",
+            controller: "viewexamController"
+          })
             .when("/exam", {
                 templateUrl: "add_questions.html",
                 controller: "PostQuestionController"
@@ -74,7 +86,7 @@
                         })
 
                         .when("#/exam",{
-                            templateUrl: 'templates/exam.html',
+                            templateUrl: 'templates/contact.html',
                             controller: 'examController'
                         })
                         .when("/aboutus",{
