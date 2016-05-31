@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>view exam</title>
+  <meta charset="UTF-8">
+  <title>view exam</title>
 </head>
 <body>
 <h1>Here is the preview of the exam</h1>
@@ -10,7 +10,8 @@
 <div class="container" style="border: 0.5px ridge">
   <div>
     <p>Available questions in database</p>
-    <button name="show" ng-click="GetQuestionsFromDB()">show questions</button><br>
+    <button name="show" ng-click="GetQuestionsFromDB()">show questions</button>
+    <br>
     <ol>
       <li ng-repeat="questionShow in questionGot">
         <p><b>{{questionShow.topic}}</b><br>
@@ -22,6 +23,6 @@
       </li>
     </ol>
   </div>
-  </div>
+</div>
 </body>
 </html>

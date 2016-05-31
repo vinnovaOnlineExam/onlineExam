@@ -1,107 +1,85 @@
 /**
  * Created by admin on 5/24/2016.*/
 
-             angular
-                   .module("myModule",['ngRoute'])
-                    .config(function ($routeProvider) {
-        $routeProvider
-            .when("/home", {
-                templateUrl: "templates/home.html",
-                controller: "homeController"
-            })
-          .when("/contact", {
-            templateUrl: "templates/contact.html",
-            controller: "contactController"
-          })
-          .when("/addquestion", {
-            templateUrl: "templates/add_questions.html",
-            controller: "addquestionController"
-          })
-          .when("/viewexam", {
-            templateUrl: "templates/viewexam.html",
-            controller: "viewexamController"
-          })
-            .when("/exam", {
-                templateUrl: "add_questions.html",
-                controller: "PostQuestionController"
-            })
-            .when("/about", {
-                templateUrl: "templates/aboutus.html",
-                controller: "aboutController"
-            })
-            .when("/career", {
-                templateUrl: "templates/carrier.html",
-                controller: "carrierController"
-            })
-    })
-                 .controller("homeController",function ($scope) {
+angular
+  .module("myModule", ['ngRoute'])
+  .config(function ($routeProvider) {
+    $routeProvider
+      .when("/home", {
+        templateUrl: "templates/home.html",
+        controller: "homeController"
+      })
+      .when("/exam", {
+        templateUrl: "templates/admin_page.html",
+        controller: "adminController"
+      })
+      .when("/contact", {
+        templateUrl: "templates/contact.html",
+        controller: "contactController"
+      })
+      .when("/exam/addquestion", {
+        templateUrl: "templates/add_questions.html",
+        controller: "addQuestionController"
+      })
+      .when("/exam/viewexam", {
+        templateUrl: "templates/viewexam.html",
+        controller: "viewExamController"
+      })
 
-                   })
-                 .controller("PostQuestionController",function ($scope, $http) {
-                   $scope.question={};
+      .when("/about", {
+        templateUrl: "templates/aboutus.html",
+        controller: "aboutController"
+      })
+      .when("/career", {
+        templateUrl: "templates/career.html",
+        controller: "carrierController"
+      })
+  })
+  .controller("homeController", function ($scope) {
 
-                  // $http.post('http://localhost:8080/api/questions',{"question":"How dodfsfadf you greet?","topic":"general","opa":"namasthe","opb":"hejsan","opc":"tjena","corr_op":"opa"})
+  })
+  .controller("addQuestionController", function ($scope, $http) {
+    $scope.question = {};
 
-                   $scope.SubmitAddQuestionForm = function(){
-                     //posting data
-                     $http.post('http://localhost:8080/api/questions',$scope.question)
+    // $http.post('http://localhost:8080/api/questions',{"question":"How dodfsfadf you greet?","topic":"general","opa":"namasthe","opb":"hejsan","opc":"tjena","corr_op":"opa"})
 
-
-                       .success(function(data){
-                         if(data.errors){
-                           $scope.iyyayyo=data.errors;
-                         }
-                         else $scope.question = null;
-                       })
-
-                   };
-                   $scope.GetQuestionsFromDB = function(){
-                     //posting data
-                     $http.get('http://localhost:8080/api/questions')
-                       .then(function(response){
-                         $scope.questionGot=response.data;
-                       })
-
-                   };
+    $scope.SubmitAddQuestionForm = function () {
+      //posting data
+      $http.post('http://localhost:8080/api/questions', $scope.question)
 
 
-                 })
-                 .controller("aboutController",function ($scope) {
+        .success(function (data) {
+          if (data.errors) {
+            $scope.iyyayyo = data.errors;
+          }
+          else $scope.question = null;
+        })
 
-                 })
-                 .controller("carrierController",function ($scope) {
+    };
 
-                 });
 
-                    /*.config(function ($routeProvider) {
+  })
+  .controller("viewExamController", function ($scope, $http) {
+    $scope.GetQuestionsFromDB = function () {
+      //posting data
+      $http.get('http://localhost:8080/api/questions')
+        .then(function (response) {
+          $scope.questionGot = response.data;
+        })
 
-        $routeProvider
-                        .when("#/",{
-                            templateUrl: 'templates/home.html',
-                            controller: 'homeController'
-                        })
-                        .when("#/career",{
-                            templateUrl: 'templates/carrier.html',
-                            controller: 'careerController'
-                        })
+    };
 
-                        .when("#/exam",{
-                            templateUrl: 'templates/contact.html',
-                            controller: 'examController'
-                        })
-                        .when("/aboutus",{
-                            templateUrl: 'templates/aboutus.html',
-                            controller: 'aboutusController'
-                        })
+  })
+  .controller("aboutController", function ($scope) {
 
-    })
-                    .controller("homeController", function ($scope) {
-                        $scope.message="Homepage";})
-                    .controller("careerController", function ($scope) {
-                        $scope.message="Careerpage";})
-                    .controller("examController", function ($scope) {
-                        $scope.message="Exampage";})
-                    .controller("aboutusController", function ($scope) {
-                        $scope.message="Aboutuspage";});
+  })
+  .controller("carrierController", function ($scope) {
 
-*/
+  })
+  .controller("adminController", function ($scope) {
+
+  })
+  .controller("contactController", function ($scope) {
+
+  });
+

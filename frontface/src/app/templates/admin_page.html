@@ -4,53 +4,47 @@
 
 
   <meta charset="UTF-8">
-      <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
-        <title>Softhouse AB</title>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  <title>Softhouse AB</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Latest compiled and minified CSS -->
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../css/bootstrap-theme.min.css" rel="stylesheet">
-       <!-- <link href="../admin_page.css" rel="stylesheet">
-        --><link href="font-awesome.min.css" rel="stylesheet">
-        <link href="../css/bootstrap-social.css" rel="stylesheet">
-        </head>
+</head>
 <body>
 
-<div  class="container col-sm-6 col-sm-offset-3" align="center">
+<div class="container col-sm-6 col-sm-offset-3" align="center">
 
   <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3>Admin Page</h3>
-        </div>
+    <div class="panel-heading">
+      <h3>Admin Page</h3>
+    </div>
     <div class="panel-body">
-      <ng-view></ng-view>
-    <div style="padding-bottom: 10px">
-      <a type="button" class="btn btn-info" href="#/addquestion" style="width: 200px; height: 32px;"><b><i class="fa fa-plus-square"></i>Add Question</b></a>
 
-    </div>
-    <div style="padding-bottom: 10px">
-      <a type="button" class="btn btn-info" href="#/createexam" style="width: 200px; height: 32px;"><b><i class="fa fa-pencil"></i> Create Exam</b></a>
+      <div style="padding-bottom: 10px">
+        <a type="button" class="btn btn-info" href="#/exam/addquestion" style="width: 200px; height: 32px;"><b><i
+          class="fa fa-plus-square"></i>Add Question</b></a>
 
-    </div>
-    <div style="padding-bottom: 10px">
-      <a type="button" class="btn btn-info" href="#/viewexam" style="width: 200px; height: 32px;"><b><i class="fa fa-pencil-square-o"></i> View Exam</b></a>
+      </div>
+      <div style="padding-bottom: 10px">
+        <a type="button" class="btn btn-info" href="#/exam/createexam" style="width: 200px; height: 32px;"><b><i
+          class="fa fa-pencil"></i> Create Exam</b></a>
 
-    </div>
-    <div style="padding-bottom: 10px">
-      <a type="button" class="btn btn-info" href="#/postexam" style="width: 200px; height: 32px;"><b><i class="fa fa-share-square-o"></i> Post Exam</b></a>
+      </div>
+      <div style="padding-bottom: 10px">
+        <a type="button" class="btn btn-info" href="#/exam/viewexam" style="width: 200px; height: 32px;"><b><i
+          class="fa fa-pencil-square-o"></i> View Exam</b></a>
+
+      </div>
+      <div style="padding-bottom: 10px">
+        <a type="button" class="btn btn-info" href="#/exam/postexam" style="width: 200px; height: 32px;"><b><i
+          class="fa fa-share-square-o"></i> Post Exam</b></a>
 
 
+      </div>
     </div>
-    </div>
-    </div>
+  </div>
 </div>
-<script src="jquery-1.12.4.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-<script src="angular.min.js"></script>
-<script src="angular-route.min.js"></script>
-<script src="adminpagescript.js"></script>
+
 </body>
 </html>
