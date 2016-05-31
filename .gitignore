@@ -1,1 +1,3 @@
 .idea
+gradleNoSTS/target/DBconn.h2.db
+gradleNoSTS/target/DBconn.lock.db
