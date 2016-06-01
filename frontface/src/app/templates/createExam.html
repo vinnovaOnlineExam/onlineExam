@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>View exam</title>
+</head>
+<body>
+<div>
+
+
+  Show no of Questions: <input type="text" ng-model="noOfQuestions">
+
+  <button type="button" ng-show="displayQuestions()">Submit</button>
+
+  <div ng-repeat="questionShow in questionGotFirst | limitTo : noOfQuestions">
+
+    <div ng-bind="questionShow.question">
+    </div>
+  </div>
+
+  <h1>Here is the preview of the exam</h1>
+  <p> Please verify the questions before posting the exam</p>
+  <div class="container" style="border: 0.5px ridge">
+    <div>
+      <p>Available questions in database</p>
+      <button name="show" ng-click="GetQuestionsFromDB()">show questions</button>
+      <br>
+      <ol>
+        <li ng-repeat="questionShow in questionGotFirst">
+          <p><b>{{questionShow.topic}}</b><br>
+            <b>Question:</b><br>{{questionShow.question}}<br>
+            <b>Options:</b><br>
+            A: {{questionShow.opa}}<br>
+            B: {{questionShow.opb}}<br>
+            C: {{questionShow.opc}}<br></p>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+</body>
+</html>

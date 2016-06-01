@@ -21,11 +21,14 @@ angular
         templateUrl: "templates/add_questions.html",
         controller: "addQuestionController"
       })
-      .when("/exam/viewexam", {
-        templateUrl: "templates/viewexam.html",
+      .when("/exam/viewExam", {
+        templateUrl: "templates/viewExam.html",
         controller: "viewExamController"
       })
-
+      .when("/exam/createExam", {
+        templateUrl: "templates/createExam.html",
+        controller: "createExamController"
+      })
       .when("/about", {
         templateUrl: "templates/aboutus.html",
         controller: "aboutController"
@@ -59,27 +62,29 @@ angular
 
 
   })
-  .controller("viewExamController", function ($scope, $http) {
-    $scope.GetQuestionsFromDB = function () {
-      //posting data
-      $http.get('http://localhost:8080/api/questions')
-        .then(function (response) {
-          $scope.questionGot = response.data;
-        })
+  .controller("createExamController", function ($scope, $http) {
 
-    };
+    $http.get('http://localhost:8080/api/questions')
+      .then(function (response) {
+        $scope.questionGotFirst = response.data;
 
+        $scope.GetQuestionsFromDB = function () {
+          //posting data
+          return $scope.questionGotFirst;
+
+        }
+      })
   })
-  .controller("aboutController", function ($scope) {
+      .controller("aboutController", function ($scope) {
 
-  })
-  .controller("carrierController", function ($scope) {
+      })
+      .controller("carrierController", function ($scope) {
 
-  })
-  .controller("adminController", function ($scope) {
+      })
+      .controller("adminController", function ($scope) {
 
-  })
-  .controller("contactController", function ($scope) {
+      })
+      .controller("contactController", function ($scope) {
 
-  });
+      })
 
