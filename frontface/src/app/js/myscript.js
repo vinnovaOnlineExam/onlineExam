@@ -35,7 +35,7 @@ angular
       })
       .when("/career", {
         templateUrl: "templates/career.html",
-        controller: "carrierController"
+        controller: "careerController"
       })
   })
   .controller("homeController", function ($scope) {
@@ -64,27 +64,30 @@ angular
   })
   .controller("createExamController", function ($scope, $http) {
 
+    $scope.questionGotFirst = [];
     $http.get('http://localhost:8080/api/questions')
       .then(function (response) {
         $scope.questionGotFirst = response.data;
+      });
+    $scope.GetQuestionsFromDB = function () {
+      //posting data
+      $scope.questionGotSecond = angular.copy($scope.questionGotFirst);
+      //TODO: Math.rand() to get $scope.noOfQuestions many random variables between 0 and questionGotFirst.length
+      // For i=0 to noOfQuestions add $scope.questionGotFirst[previously randomised number] to new array and return
+      return $scope.questionGotSecond;
 
-        $scope.GetQuestionsFromDB = function () {
-          //posting data
-          return $scope.questionGotFirst;
-
-        }
-      })
+    }
   })
-      .controller("aboutController", function ($scope) {
+  .controller("aboutController", function ($scope) {
 
-      })
-      .controller("carrierController", function ($scope) {
+  })
+  .controller("careerController", function ($scope) {
 
-      })
-      .controller("adminController", function ($scope) {
+  })
+  .controller("adminController", function ($scope) {
 
-      })
-      .controller("contactController", function ($scope) {
+  })
+  .controller("contactController", function ($scope) {
 
-      })
+  })
 

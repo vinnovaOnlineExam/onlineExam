@@ -23,10 +23,11 @@
   <div class="container" style="border: 0.5px ridge">
     <div>
       <p>Available questions in database</p>
-      <button name="show" ng-click="GetQuestionsFromDB()">show questions</button>
+      <button name="show"  ng-click="GetQuestionsFromDB(); showList = !showList">show questions</button>
       <br>
-      <ol>
-        <li ng-repeat="questionShow in questionGotFirst">
+
+      <ol ng-if="showList">
+        <li ng-repeat="questionShow in questionGotSecond">
           <p><b>{{questionShow.topic}}</b><br>
             <b>Question:</b><br>{{questionShow.question}}<br>
             <b>Options:</b><br>
@@ -35,6 +36,7 @@
             C: {{questionShow.opc}}<br></p>
         </li>
       </ol>
+
     </div>
   </div>
 
