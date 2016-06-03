@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>View exam</title>
+</head>
+<body>
+<div ng-controller="viewExamController">
+
+
+  <h1>Here is the preview of the exam</h1>
+  <p> Please verify the questions before posting the exam</p>
+  <div class="container" style="border: 0.5px ridge">
+    <div>
+      <p>Selected questions to host the exam</p>
+
+
+      <ol>
+        <li ng-repeat="questionShow in showQuestions">
+          <p><b>{{questionShow.topic}}</b><br>
+            <b>Question:</b><br>{{questionShow.question}}<br>
+            <b>Options:</b><br>
+            <input type="checkbox" name="A"> A: {{questionShow.opa}}<br>
+            <input type="checkbox" name="B"> B: {{questionShow.opb}}<br>
+            <input type="checkbox" name="C"> C: {{questionShow.opc}}<br></p>
+        </li>
+      </ol>
+
+    </div>
+  </div>
+
+</body>
+</html>

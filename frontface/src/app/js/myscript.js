@@ -15,7 +15,7 @@ angular
       })
       .when("/takeExam", {
         templateUrl: "templates/exam_instructions.html",
-        controller: "takeExam"
+        controller: "examInstructionsController"
       })
       .when("/contact", {
         templateUrl: "templates/contact.html",
@@ -45,9 +45,9 @@ angular
         templateUrl: "templates/career.html",
         controller: "careerController"
       })
-      .when("/checkSubmit", {
+      .when("/takeExam/checkSubmit", {
         templateUrl: "templates/check_and_submit.html",
-        controller: ""
+        controller: "checkAndSubmitController"
       })
   })
   .controller("homeController", function ($scope) {
@@ -74,9 +74,11 @@ angular
 
 
   })
-  .controller("createExamController", function ($scope, $http) {
+  .controller("createExamController", function ($scope, $rootScope, $http) {
 
     $scope.questionGotFirst = [];
+    $scope.noOfQuestions = null;
+    $rootScope.questionsChose = [];
     $http.get('http://localhost:8080/api/questions')
       .then(function (response) {
         $scope.questionGotFirst = response.data;
@@ -89,7 +91,24 @@ angular
       return $scope.questionGotSecond;
 
     }
+
+    $scope.operateQuestions = function () {
+
+      var numberEntered = $scope.noOfQuestions;
+      //return $scope.numberEntered;
+      //return $scope.noOfQuestions;
+
+      for (var i = 0; i < numberEntered; i++) {
+        $rootScope.questionsChose.push($scope.questionGotFirst[i]);
+        //console.log(questionsChose[i]);
+      }
+      //console.log($rootScope.questionsChose[0]);
+      return $rootScope.questionsChose;
+
+    }
+
   })
+
   .controller("aboutController", function ($scope) {
 
   })
@@ -102,10 +121,23 @@ angular
   .controller("contactController", function ($scope) {
 
   })
-  .controller("takeExam", function ($scope,$location) {
-    $scope.proceedToContinue=function () {
-      $location.path('/checkSubmit');
+  .controller("examInstructionsController", function ($scope, $location) {
+    $scope.proceedToContinue = function () {
+      $location.path('takeExam/checkSubmit');
     }
+  })
+  .controller("checkAndSubmitController", function ($scope, $http) {
+    $http.get('http://localhost:8080/api/questions')
+      .then(function (response) {
+        $scope.questionGotExam = response.data;
+      });
 
   })
+  .controller("viewExamController", function ($scope, $rootScope) {
+    $scope.showQuestions = angular.copy($rootScope.questionsChose);
+  })
+
+
+
+
 
