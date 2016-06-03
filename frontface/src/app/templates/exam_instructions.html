@@ -8,10 +8,10 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-      
+
     </title>
 </head>
-<body>
+<body ng-controller="takeExam">
 <div class="container" >
     <div class="panel panel-primary">
         <div class="panel-heading" align="center">
@@ -63,7 +63,7 @@ The head invigilator will provide information about test support materials that 
                 </div>
             </div>
             <div align="center">
-                <button class="bg-primary bt"><i class="fa fa-fighter-jet"></i>&nbsp;&nbsp;&nbsp;Proceed to Test&nbsp;&nbsp;&nbsp;<i class="fa fa-fighter-jet"></i></button><br><br>
+                <button class="bg-primary bt" ng-click="proceedToContinue()" ><i class="fa fa-fighter-jet" ></i>&nbsp;&nbsp;&nbsp;Proceed to Test&nbsp;&nbsp;&nbsp;<i class="fa fa-fighter-jet"></i></button><br><br>
             </div>
 </div>
 </body>

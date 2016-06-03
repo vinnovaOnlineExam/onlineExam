@@ -13,6 +13,10 @@ angular
         templateUrl: "templates/admin_page.html",
         controller: "adminController"
       })
+      .when("/takeExam", {
+        templateUrl: "templates/exam_instructions.html",
+        controller: "takeExam"
+      })
       .when("/contact", {
         templateUrl: "templates/contact.html",
         controller: "contactController"
@@ -29,6 +33,10 @@ angular
         templateUrl: "templates/createExam.html",
         controller: "createExamController"
       })
+      .when("/exam/postExam", {
+        templateUrl: "templates/generate_exam.html",
+        controller: ""
+      })
       .when("/about", {
         templateUrl: "templates/aboutus.html",
         controller: "aboutController"
@@ -36,6 +44,10 @@ angular
       .when("/career", {
         templateUrl: "templates/career.html",
         controller: "careerController"
+      })
+      .when("/checkSubmit", {
+        templateUrl: "templates/check_and_submit.html",
+        controller: ""
       })
   })
   .controller("homeController", function ($scope) {
@@ -88,6 +100,12 @@ angular
 
   })
   .controller("contactController", function ($scope) {
+
+  })
+  .controller("takeExam", function ($scope,$location) {
+    $scope.proceedToContinue=function () {
+      $location.path('/checkSubmit');
+    }
 
   })
 
