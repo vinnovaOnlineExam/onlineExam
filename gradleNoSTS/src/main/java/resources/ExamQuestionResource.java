@@ -17,26 +17,27 @@ import javax.ws.rs.core.Response.Status;
 
 import com.codahale.metrics.annotation.Timed;
 
-import core.User;
-import databaseDAO.UserDAO;
+import core.ExamQuestion;
+import databaseDAO.ExamDAO;
 
-@Path("/users")
+@Path("/examQuestions")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class UserResource {
-	private UserDAO myDAO;
+public class ExamQuestionResource {
+	private ExamDAO examDAO;
 
-	public UserResource(UserDAO dao) {
-		myDAO = dao;
+	public ExamQuestionResource(ExamDAO dao) {
+
+		examDAO = dao;
 	}
 
 	@GET
 	@Path("/{id}")
 	@Timed
-	public User getUser(@PathParam("id") Integer id) {
-		User u = myDAO.findUserById(id);
-		if (u != null) {
-			return u;
+	public ExamQuestion getExamQuestion(@PathParam("id") Integer id) {
+		ExamQuestion eq = examDAO.findExamQuestionById(id);
+		if (eq != null) {
+			return eq;
 		} else {
 			throw new WebApplicationException(Response.Status.NOT_FOUND);
 		}
@@ -44,27 +45,27 @@ public class UserResource {
 
 	@GET
 	@Timed
-	public List<User> listUsers() {
-		return myDAO.getAllUsers();
+	public List<ExamQuestion> listExamQuestions() {
+		return examDAO.getAllExamQuestions();
 	}
 
 	@POST
 	@Timed
-	public void saveUser(User userSay) {
-		if (userSay != null) {
-			myDAO.insertUser(userSay);
+	public void saveExamQuestion(ExamQuestion examQuestion) {
+		if (examQuestion != null) {
+			examDAO.insertExamQuestion(examQuestion);
 			throw new WebApplicationException(Response.Status.OK);
+
 		} else {
 			throw new WebApplicationException(Status.BAD_REQUEST);
 		}
-
 	}
 
 	@PUT
 	@Path("/{id}")
-	public void updateUser(@PathParam("id") int id, User user) {
-		if (user != null) {
-			myDAO.updateUser(user, id);
+	public void updateExamQuestion(@PathParam("id") int id, ExamQuestion examQuestion) {
+		if (examQuestion != null) {
+			examDAO.updateExamQuestion(examQuestion, id);
 			throw new WebApplicationException(Response.Status.OK);
 		} else {
 			throw new WebApplicationException(Status.BAD_REQUEST);
@@ -75,11 +76,11 @@ public class UserResource {
 	@Path("/{id}")
 	@Timed
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.TEXT_PLAIN })
-	public void deleteUser(@PathParam("id") Integer id) {
-
-		if (myDAO.findUserById(id) != null) {
-			myDAO.deleteUserById(id);
+	public void deleteExamQuestion(@PathParam("id") Integer id) {
+		if (examDAO.findExamQuestionById(id) != null) {
+			examDAO.deleteExamQuestionById(id);
 			throw new WebApplicationException(Response.Status.OK);
+
 		} else {
 			throw new WebApplicationException(Response.Status.NOT_FOUND);
 		}

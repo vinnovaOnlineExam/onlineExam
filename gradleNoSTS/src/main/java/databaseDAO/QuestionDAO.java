@@ -17,10 +17,10 @@ public interface QuestionDAO {
 	void createQuestionTable();
 
 	@SqlUpdate("insert into QUESTIONS (question, topic, opa, opb, opc, corr_op) values (:question, :topic, :opa, :opb, :opc, :corr_op)")
-	void insertQuestion(@BindBean Question questionSay);
+	void insertQuestion(@BindBean Question question);
 
 	@SqlUpdate("update QUESTIONS set question = :u.question, topic = :u.topic, opa = :u.opa, opb = :u.opb, opc = :u.opc, corr_op = :u.corr_op where id = :id")
-	void updateQuestion(@BindBean("u") Question questionSay, @Bind("id") int id);
+	void updateQuestion(@BindBean("u") Question question, @Bind("id") int id);
 
 	@SqlQuery("select * from QUESTIONS where id = :id")
 	Question findQuestionById(@Bind("id") int id);

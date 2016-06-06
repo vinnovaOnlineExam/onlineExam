@@ -50,9 +50,9 @@ public class QuestionResource {
 
 	@POST
 	@Timed
-	public void saveQuestion(Question questionSay) {
-		if (questionSay != null) {
-			questionDAO.insertQuestion(questionSay);
+	public void saveQuestion(Question question) {
+		if (question != null) {
+			questionDAO.insertQuestion(question);
 			throw new WebApplicationException(Response.Status.OK);
 		} else {
 			throw new WebApplicationException(Status.BAD_REQUEST);
@@ -62,9 +62,9 @@ public class QuestionResource {
 
 	@PUT
 	@Path("/{id}")
-	public void updateQuestion(@PathParam("id") int id, Question questionSay) {
-		if (questionSay != null) {
-			questionDAO.updateQuestion(questionSay, id);
+	public void updateQuestion(@PathParam("id") int id, Question question) {
+		if (question != null) {
+			questionDAO.updateQuestion(question, id);
 			throw new WebApplicationException(Response.Status.OK);
 		} else {
 			throw new WebApplicationException(Status.BAD_REQUEST);

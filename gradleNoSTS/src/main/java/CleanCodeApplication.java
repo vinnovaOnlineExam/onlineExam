@@ -10,11 +10,13 @@ import org.skife.jdbi.v2.DBI;
 
 import com.google.common.base.Joiner;
 
+import databaseDAO.ExamDAO;
 import databaseDAO.QuestionDAO;
 import databaseDAO.UserDAO;
 import io.dropwizard.Application;
 import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.setup.Environment;
+import resources.ExamQuestionResource;
 import resources.HelloWorldResource;
 import resources.QuestionResource;
 import resources.UserResource;
@@ -47,12 +49,18 @@ public class CleanCodeApplication extends Application<ApplicationConfiguration> 
 		QuestionDAO questionDAO = jdbi.onDemand(QuestionDAO.class);
 		questionDAO.createQuestionTable();
 
+		ExamDAO examDAO = jdbi.onDemand(ExamDAO.class);
+		examDAO.createExamsTable();
+
 		// environment.addResource(new UserMgmnt(myDAO));
 		UserResource userResource = new UserResource(userDAO);
 		environment.jersey().register(userResource);
 
 		QuestionResource questionResource = new QuestionResource(questionDAO);
 		environment.jersey().register(questionResource);
+
+		ExamQuestionResource examQuestionResource = new ExamQuestionResource(examDAO);
+		environment.jersey().register(examQuestionResource);
 
 	}
 
