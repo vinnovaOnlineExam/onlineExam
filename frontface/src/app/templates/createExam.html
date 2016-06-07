@@ -39,15 +39,40 @@
           <p><b>{{questionShow.topic}}</b><br>
             <b>Question:</b><br>{{questionShow.question}}<br>
             <b>Options:</b><br>
-            A: {{questionShow.opa}}<br>
-            B: {{questionShow.opb}}<br>
-            C: {{questionShow.opc}}<br></p>
+          <div class="radio">
+            <label>
+              <input ng-model="selectedoption" type="radio" name="A" ng-value="'opa'">
+              A: {{questionShow.opa}}
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input ng-model="selectedoption" type="radio" name="B" ng-value="'opb'">
+              B: {{questionShow.opb}}
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input ng-model="selectedoption" type="radio" name="C" ng-value="'opc'">
+              C: {{questionShow.opc}}
+            </label>
+          </div>
+          $scope.answer[]={{(selectedoption === questionShow.corr_op) ? '1': '0'}}
+    {{$scope.answer}}
+
         </li>
       </ol>
-
     </div>
   </div>
   <button type="button" ng-click="sumbitSelectedQuestion() ">Submit</button>
+
+
+
+
+
+
+
+
 
 
 </body>
