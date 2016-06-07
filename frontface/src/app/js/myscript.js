@@ -35,7 +35,7 @@ angular
       })
       .when("/exam/postExam", {
         templateUrl: "templates/generate_exam.html",
-        controller: ""
+        controller: "postExamController"
       })
       .when("/about", {
         templateUrl: "templates/aboutus.html",
@@ -74,11 +74,21 @@ angular
 
 
   })
-  .controller("createExamController", function ($scope, $rootScope, $http) {
+  .controller("createExamController", function ($scope, $location, $rootScope, $http) {
 
     $scope.questionGotFirst = [];
     $scope.noOfQuestions = null;
-    $rootScope.questionsChose = [];
+    $scope.ids = [];
+    $scope.AbsUrl = null;
+    $scope.newIds = "";
+    $scope.questionForExam = [];
+    var nisse = {
+      'key': []
+    }
+
+    nisse.key = "asdadsd"
+    $scope.questionsChose = [];
+    $scope.questionsChose.examOpa = {};
     $http.get('http://localhost:8080/api/questions')
       .then(function (response) {
         $scope.questionGotFirst = response.data;
@@ -99,17 +109,36 @@ angular
       //return $scope.noOfQuestions;
 
       for (var i = 0; i < numberEntered; i++) {
-        $rootScope.questionsChose.push($scope.questionGotFirst[i]);
-        //console.log(questionsChose[i]);
+
+        // $scope.questionsChose{"examOpa"}.push($scope.questionGotFirst[i].opa);
+        console.log($scope.questionGotFirst[i]);
+        $scope.ids[i] = angular.copy($scope.questionGotFirst[i].id);
+        //posting submittedquestions
+
       }
+      $scope.AbsUrl = $location.absUrl() + "?ids=" + $scope.ids.toString();
+
       //console.log($rootScope.questionsChose[0]);
-      return $rootScope.questionsChose;
+      return $scope.AbsUrl;
+
 
     }
 
+    $scope.newIds = $location.search().ids;
+
+    if ($scope.newIds != null && $scope.newIds.length > 0) {
+      $http.get('http://localhost:8080/api/questions?ids=' + $scope.newIds)
+        .then(function (response) {
+          $scope.questionForExam = response.data;
+        });
+
+    }
   })
 
-  .controller("aboutController", function ($scope) {
+  .controller("aboutController", function ($location, $scope) {
+    //$scope.naresh="nana";
+    //$scope.AbsUrl = $location.absUrl();
+
 
   })
   .controller("careerController", function ($scope) {

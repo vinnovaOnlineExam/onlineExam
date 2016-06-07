@@ -13,21 +13,44 @@
   <div class="container" style="border: 0.5px ridge">
     <div>
       <p>Selected questions to host the exam</p>
+      <p> {{questionsChose}}</p>
 
 
       <ol>
         <li ng-repeat="questionShow in showQuestions">
-          <p><b>{{questionShow.topic}}</b><br>
+          <b>{{questionShow.topic}}</b><br>
             <b>Question:</b><br>{{questionShow.question}}<br>
             <b>Options:</b><br>
-            <input type="checkbox" name="A"> A: {{questionShow.opa}}<br>
-            <input type="checkbox" name="B"> B: {{questionShow.opb}}<br>
-            <input type="checkbox" name="C"> C: {{questionShow.opc}}<br></p>
+         <div class="radio">
+           <label>
+           <input ng-model="selectedoption" type="radio" name="A" ng-value="'opa'">
+             A: {{questionShow.opa}}
+           </label>
+         </div>
+
+          <div class="radio">
+            <label>
+              <input ng-model="selectedoption" type="radio" name="B" ng-value="'opb'">
+              B: {{questionShow.opb}}
+            </label>
+          </div>
+
+          <div class="radio">
+            <label>
+              <input ng-model="selectedoption" type="radio" name="C" ng-value="'opc'">
+              C: {{questionShow.opc}}
+            </label>
+          </div>
+
+
+
+          {{(selectedoption === questionShow.corr_op) ? '1': '0'}}
+
+
+
         </li>
       </ol>
-
     </div>
   </div>
-
 </body>
 </html>
