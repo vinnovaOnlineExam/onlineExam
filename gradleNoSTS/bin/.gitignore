@@ -1,6 +1,5 @@
-/resources/
 /ApplicationConfiguration.class
-/db/
-/sayingpack/
+/CleanCodeApplication.class
 /core/
 /databaseDAO/
+/resources/
