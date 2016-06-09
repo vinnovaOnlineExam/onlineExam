@@ -19,9 +19,8 @@
     <p>{{question}}</p>
     <p>{{iyyayyo}}</p>
     <form name="AddQuestionsForm" ng-submit="SubmitAddQuestionForm()" class="form-horizontal" role="form">
-      <div class="form-group">
-        <label for="top" class="col-sm-3 control-label"></label>
-        <div class="col-sm-9" align="center">
+      <div class="form-group form-inline" align="center">
+        <label class="control-label">Select the Topic</label>
           <select class='dropdown' name="topic" ng-model="question.topic" style="width: auto; height: auto">
             <option value="" disabled selected>Select the topic</option>
             <option>General</option>
@@ -31,19 +30,16 @@
             <option>Java</option>
             <option>Python</option>
           </select>
-        </div>
       </div>
-      <div class="form-group">
-        <label for="question" class="col-sm-3 control-label">
+      <div class="form-group form-inline" align="center">
+        <label for="question" class="control-label">
           Enter the Question
         </label>
-        <div class="col-sm-9">
           <input type="text" class="form-control" id="question" name="question" ng-model="question.question"
                  placeholder="Enter the question....">
-        </div>
       </div>
-      <div class="form-group">
-        <div class="col-sm-6 panel panel-primary">
+      <div class="form-group form-inline" align="center">
+        <div class="col-sm-4 col-sm-push-1 panel panel-primary">
           <div class="panel-heading" align="center">
             <label class="control-label panel-title">Enter the Answers</label>
           </div>
@@ -55,7 +51,7 @@
             <div class="row"><input name="opc" ng-model="question.opc" type="text" id="opc"></div>
           </div>
         </div>
-        <div class="col-sm-6 col-sm-push-2 panel panel-primary">
+        <div class="col-sm-4 col-sm-push-3 panel panel-primary">
           <div class="panel-heading" align="center">
             <label class="control-label panel-title">Select the Correct Answer</label>
           </div>
@@ -71,10 +67,11 @@
           </div>
         </div>
       </div>
-      <div class="form-group">
-
-        <div class="col-sm-6 col-sm-offset-6" align="center">
+      <div class="form-group form-inline">
+        <div class="col-sm-4 col-sm-push-2" align="center">
           <button type="submit" class="col-sm-6 col-sm-pull-1 btn btn-info-sky">Submit</button>
+         </div>
+        <div class="col-sm-6 col-sm-push-3" align="center">
           <button type="reset" class="col-sm-6 btn btn-warning ">Reset</button>
         </div>
       </div>
