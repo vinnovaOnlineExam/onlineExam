@@ -37,6 +37,10 @@ angular
         templateUrl: "templates/createExam.html",
         controller: "createExamController"
       })
+      .when("/exam/createExam2", {
+        templateUrl: "templates/createExam2.html",
+        controller: "answerChecking"
+      })
       .when("/exam/postExam", {
         templateUrl: "templates/postExam.html",
         controller: "postExamController"
@@ -51,7 +55,7 @@ angular
       })
       .when("/takeExam/checkSubmit", {
         templateUrl: "templates/check_and_submit.html",
-        controller: "checkAndSubmitController"
+        controller: "answerChecking"
       })
   })
   .controller("homeController", function ($scope) {
@@ -189,12 +193,48 @@ angular
     $scope.showQuestions = angular.copy($rootScope.questionsChose);
   })
 
-  .controller("postExamController", function ($scope, $rootScope) {
+  .controller("answerChecking", function ($scope, $http,$rootScope) {
 
+
+    $scope.questionsChose = [];
+    $scope.questionsChose.examOpa = {};
+    $http.get('http://localhost:8080/api/questions')
+      .then(function (response) {
+        $scope.questionGotFirst = response.data;
+      });
+    $scope.GetQuestionsFromDB = function () {
+      //posting data
+      $scope.questionGotSecond = angular.copy($scope.questionGotFirst);
+      //TODO: Math.rand() to get $scope.noOfQuestions many random variables between 0 and questionGotFirst.length
+      // For i=0 to noOfQuestions add $scope.questionGotFirst[previously randomised number] to new array and return
+      return $scope.questionGotSecond;
+
+    }
+
+/*
+  for (i = 0; i < 4; i++) {
+    if ($scope.selectedoption === $scope.questionShow..corr_op) {
+      answer[i] = 1;
+    }
+    else {
+      answer[i] = 0;
+    }
+  }
+    */
+
+  })
+  .controller("postExamController", function ($scope) {
 
   })
 
+
+
+
+
+
+
   /*
+
   .controller("postExamController", function ($scope, $location, $rootScope, $http) {
 
     $scope.questionGotFirst = [];
