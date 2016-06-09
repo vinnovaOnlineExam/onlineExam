@@ -129,6 +129,7 @@ angular
 
 
     }
+
    // $rootScope.Examlink=angular.copy($scope.operateQuestions());
     //console.log($rootScope.Examlink);
 
