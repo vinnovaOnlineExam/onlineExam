@@ -37,7 +37,7 @@ margin:0px auto;
 {
     margin: 0px auto;
     border: 1px ridge;
-    background-color: white;
+  background-color: #ffffff;
 }
 .modal
 {
@@ -77,5 +77,15 @@ footer
 }
 
 .sfdesc {
+  background-color: #ea6602;
+}
+
+.panel, .panel-primary {
+  border-color: #000000;
+
+}
+
+.panel > .panel-heading {
+  background-image: none;
   background-color: #ea6602;
 }
