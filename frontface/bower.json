@@ -1,8 +1,8 @@
 {
-  "name": "frontend",
+  "name": "frontface",
   "main": [
-    "/dist/frontend.min.js",
-    "/dist/frontend.min.css"
+    "/src/app/js/myscript.js",
+    "/src/app/css/mystyles.css"
   ],
   "version": "0.1.0",
   "description": "TODO",
