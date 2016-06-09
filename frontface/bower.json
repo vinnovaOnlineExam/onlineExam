@@ -1,8 +1,13 @@
 {
   "name": "frontface",
   "main": [
+<<<<<<< Updated upstream
     "/src/app/js/myscript.js",
     "/src/app/css/mystyles.css"
+=======
+    "/dist/frontface.min.js",
+    "/dist/frontface.min.css"
+>>>>>>> Stashed changes
   ],
   "version": "0.1.0",
   "description": "TODO",

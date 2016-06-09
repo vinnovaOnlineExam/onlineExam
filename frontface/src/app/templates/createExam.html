@@ -1,72 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>View exam</title>
-</head>
-<body>
-<div ng-controller="createExamController">
 
-
-  Show no of Questions: <input type="text" ng-model="noOfQuestions">
-  <button name="EnterQuestions" ng-click="operateQuestions()">OK</button>
-  {{AbsUrl}}
-
-  {{newIds}}
-
-  {{questionForExam}}
-
-
-  <!--
-  <div ng-repeat="questionShow in questionGotFirst | limitTo : noOfQuestions  ng-model='selectedQuestions' " >
-
-    <div ng-bind="selectedQuestions.question" >
-
-
+<body ng-controller="postExamController">
+<div class="container col-sm-6 col-sm-offset-3" align="center">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3>Generate a Test</h3>
     </div>
-  </div>-->
 
-  <h1>Here is the preview of the exam</h1>
-  <p> Please verify the questions before posting the exam</p>
-  <div class="container" style="border: 0.5px ridge">
-    <div>
-      <p>Available questions in database</p>
-      <button name="show" ng-click="GetQuestionsFromDB(); showList = !showList">show questions</button>
-      <br>
+   <!-- <div class="panel-body">
+      <form class="form-horizontal" role="form" action="">
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Select the Topic</label>
+          <div class="col-sm-8" align="center">
+               <select class='dropdown'>
+                   <option value="" disabled selected>Select the topic</option>
+                   <option>HTML 5</option>
+                   <option>CSS 3</option>
+                   <option>AngularJS</option>
+                   <option>Java</option>
+                   <option>Python</option>
+                 </select>
 
-      <ol ng-if="showList">
-        <li ng-repeat="questionShow in questionGotSecond">
-          <p><b>{{questionShow.topic}}</b><br>
-            <b>Question:</b><br>{{questionShow.question}}<br>
-            <b>Options:</b><br>
-          <div class="radio">
-            <label>
-              <input ng-model="selectedoption" type="radio" name="A" ng-value="'opa'">
-              A: {{questionShow.opa}}
-            </label>
-          </div>
-          <div class="radio">
-            <label>
-              <input ng-model="selectedoption" type="radio" name="B" ng-value="'opb'">
-              B: {{questionShow.opb}}
-            </label>
-          </div>
-          <div class="radio">
-            <label>
-              <input ng-model="selectedoption" type="radio" name="C" ng-value="'opc'">
-              C: {{questionShow.opc}}
-            </label>
-          </div>
-          <!--      {{(selectedoption === questionShow.corr_op) ? '1': '0'}}
-          {{$scope.answer}}-->
 
-        </li>
-      </ol>
+
+
+          </div>
+        </div>
+        -->
+
+
+        <div class="form-group">
+          <label class="col-sm-4 control-label" align="center">Enter the no. of Questions</label>
+          <div>
+             <input type="text" ng-model="noOfQuestions">
+          </div>
+        </div>
+        <button class="bg-primary bt" ng-click="operateQuestions()><i class="fa fa-pencil"></i> Generate Exam</button><br>
+    <br>
+{{Examlink}}
+
+
+    {{questionForExam}}
+
+
+    </form>
     </div>
   </div>
-  <button type="button" ng-click="sumbitSelectedQuestion() ">Submit</button>
-
-
 </div>
 </body>
-</html>
+

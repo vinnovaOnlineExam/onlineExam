@@ -1,4 +1,9 @@
 #FileLock
+<<<<<<< Updated upstream
 #Thu Jun 09 12:01:20 CEST 2016
 id=155349bdf24058aac07df000ffdf0ebe9b597ee640e
+=======
+#Thu Jun 09 11:00:16 CEST 2016
+id=1553463f8bedab0ee3d25ff02b9d395afe0bfdd993c
+>>>>>>> Stashed changes
 method=file
