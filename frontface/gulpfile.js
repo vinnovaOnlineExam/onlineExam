@@ -2,6 +2,7 @@
 'use strict';
 
 var gulp = require('gulp'),
+    zip = require('gulp-zip'),
     g = require('gulp-load-plugins')({lazy: false}),
     noop = g.util.noop,
     es = require('event-stream'),
@@ -172,6 +173,13 @@ gulp.task('watch', ['statics', 'default'], function () {
  * Default task
  */
 gulp.task('default', ['lint', 'build-all']);
+/*
+zip */
+gulp.task('zip', function () {
+  return gulp.src('./**')
+    .pipe(zip('test.zip'))
+    .pipe(gulp.dest('./dist'));
+});
 
 /**
  * Lint everything
