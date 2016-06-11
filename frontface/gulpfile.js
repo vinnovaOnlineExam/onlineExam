@@ -2,17 +2,16 @@
 'use strict';
 
 var gulp = require('gulp'),
-    //zip = require('gulp-zip'),
-    g = require('gulp-load-plugins')({lazy: false}),
-    noop = g.util.noop,
-    es = require('event-stream'),
-    bowerFiles = require('main-bower-files'),
-    rimraf = require('rimraf'),
-    queue = require('streamqueue'),
-    lazypipe = require('lazypipe'),
-    stylish = require('jshint-stylish'),
-    bower = require('./bower'),
-    isWatching = false;
+  g = require('gulp-load-plugins')({lazy: false}),
+  noop = g.util.noop,
+  es = require('event-stream'),
+  bowerFiles = require('main-bower-files'),
+  rimraf = require('rimraf'),
+  queue = require('streamqueue'),
+  lazypipe = require('lazypipe'),
+  stylish = require('jshint-stylish'),
+  bower = require('./bower'),
+  isWatching = false;
 
 var htmlminOpts = {
   removeComments: true,
@@ -173,14 +172,7 @@ gulp.task('watch', ['statics', 'default'], function () {
  * Default task
  */
 gulp.task('default', ['lint', 'build-all']);
-/*
-zip 
-gulp.task('zip', function () {
-  return gulp.src('./**')
-    .pipe(zip('test.zip'))
-    .pipe(gulp.dest('./dist'));
-});
-*/
+
 /**
  * Lint everything
  */

@@ -7,7 +7,7 @@
     "test": "gulp test"
   },
   "dependencies": {
-    "gulp-zip": "^3.2.0"
+
   },
   "devDependencies": {
     "chai": "^3.5.0",
