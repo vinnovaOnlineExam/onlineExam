@@ -73,7 +73,7 @@ body
 footer
 {
     background: #ea6602;
-    padding:0px 50px 50px 0px;
+    padding:0px 0px 0px 0px;
 }
 
 .sfdesc {
@@ -89,3 +89,17 @@ footer
   background-image: none;
   background-color: #ea6602;
 }
+
+.carousel-inner > .item > img{
+  width: 70%;
+  margin: auto;
+}
+
+.carousel{
+  height: 350px;
+}
+
+.imglist{
+  list-style-image: url("../images/clr.png");
+}
+
