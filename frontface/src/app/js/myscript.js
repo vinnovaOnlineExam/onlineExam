@@ -189,7 +189,7 @@ angular
   .controller("answerChecking", function ($scope, $rootScope, $location, $http) {
 
     $scope.newIds = "";
-    $rootScope.questionForExam = [];
+    $scope.questionForExam = [];
 
 
     $scope.newIds = $location.search().ids;
@@ -197,19 +197,24 @@ angular
     //if ($scope.newIds != null && $scope.newIds.length > 0) {
     $http.get('http://localhost:8080/api/questions?ids=' + $scope.newIds)
       .then(function (response) {
-        $rootScope.questionForExam = response.data;
+        $scope.questionForExam = response.data;
 
-        window.alert($rootScope.questionForExam.length);
-
+        window.alert('niise', $scope.questionForExam.length);
+        doSomethingLater();
       })
-    if (angular.isObject($rootScope.questionForExam)) {
-      var noOfIds = $rootScope.questionForExam.length;
-      window.alert("ids" + noOfIds);
-      for (i = 0; i < noOfIds; i++) {
-        console.log("from for" + $rootScope.questionForExam[i]);
-        window.alert("from for" + $rootScope.questionForExam[i]);
+
+    function doSomethingLater() {
+      //THis will run when HTTP is done.
+      if (angular.isObject($scope.questionForExam)) {
+        var noOfIds = $scope.questionForExam.length;
+        window.alert("ids" + noOfIds);
+        for (i = 0; i < noOfIds; i++) {
+          console.log("from for", $scope.questionForExam[i]);
+          window.alert("from for", $scope.questionForExam[i]);
+        }
       }
     }
+
 
     //}
 

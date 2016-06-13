@@ -2,6 +2,8 @@ package resources;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -51,7 +53,7 @@ public class QuestionResource {
 
 	@GET
 	@Timed
-	public List<Question> nebondaGet(@QueryParam("ids") String ids) {
+	public List<Question> nebondaGet(@QueryParam("ids") String ids, @QueryParam("topic") String topic) {
 		if (ids == null)
 			return listQuestions();
 		else
@@ -60,16 +62,20 @@ public class QuestionResource {
 
 	public List<Question> getQuestionByIdList(String ids) {
 		String[] idList = ids.split(",");
-		List<Question> qList = new ArrayList<Question>();
-		if (idList.length > 0) {
-			for (int i = 0; i < idList.length; i++) {
-				Question q = questionDAO.findQuestionById(Integer.parseInt(idList[i]));
-				if (q != null) {
-					qList.add(q);
-				}
-			}
-		}
-		return qList;
+		return Stream.of(idList) //
+				.map(id -> questionDAO.findQuestionById(Integer.parseInt(id))) //
+				.filter(q -> q != null) //
+				.collect(Collectors.toList());
+//		List<Question> qList = new ArrayList<Question>();
+//		if (idList.length > 0) {
+//			for (int i = 0; i < idList.length; i++) {
+//				Question q = questionDAO.findQuestionById(Integer.parseInt(idList[i]));
+//				if (q != null) {
+//					qList.add(q);
+//				}
+//			}
+//		}
+//		return qList;
 	}
 
 	@POST
