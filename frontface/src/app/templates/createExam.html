@@ -29,9 +29,18 @@
 
 
         <div class="form-group">
+          <select class='dropdown' ng-model="topic">
+            <option value="" disabled selected>Select the topic</option>
+            <option>HTML 5</option>
+            <option>CSS 3</option>
+            <option>AngularJS</option>
+            <option>Java</option>
+            <option>Python</option>
+          </select>
+
           <label class="col-sm-4 control-label" align="center">Enter the no. of Questions</label>
           <div>
-             <input type="text" ng-model="noOfQuestions">
+             <input type="text" ng-model="noOfQuestions ">
           </div>
         </div>
       <button class="btn-warning btn" ng-click="operateQuestions()"><i class="fa fa-pencil"></i> Generate Exam</button>
@@ -40,7 +49,7 @@
 {{Examlink}}
 
 
-    {{questionForExam}}
+
 
 
       <!--</form>-->
