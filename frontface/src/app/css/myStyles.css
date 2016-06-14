@@ -89,3 +89,22 @@ footer
   background-image: none;
   background-color: #ea6602;
 }
+
+.carousel-inner > .item > img{
+  width: 70%;
+  margin: auto;
+}
+
+.carousel{
+  height: 350px;
+  overflow: hidden;
+}
+
+.imglist{
+  list-style-image: url("../images/clr.png");
+}
+
+.carousel-control{
+height: 495px;
+}
+

@@ -1,0 +1,35 @@
+<div>
+  <ol>
+    <li ng-repeat="q in questionForExam">
+      Question: {{q.question}}
+
+      <br>
+      <b>Options:</b><br>
+      <div class="radio">
+        <label>
+          <input ng-model="selected.option" type="radio" name="A" ng-value="'opa'" ng-click="">
+          A: {{q.opa}}
+        </label>
+      </div>
+
+      <div class="radio">
+        <label>
+          <input ng-model="selected.option" type="radio" name="B" ng-value="'opb'">
+          B: {{q.opb}}
+        </label>
+      </div>
+
+      <div class="radio">
+        <label>
+          <input ng-model="selected.option" type="radio" name="C" ng-value="'opc'">
+          C: {{q.opc}}
+        </label>
+      </div>
+      <!--{{((selectedoption === q.corr_op) ? '1': '0')}}
+-->
+    </li>
+  </ol>
+</div>
+
+
+

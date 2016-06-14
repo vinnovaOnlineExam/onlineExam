@@ -6,9 +6,7 @@
     "start": "gulp watch",
     "test": "gulp test"
   },
-  "dependencies": {
-    "gulp-zip": "^3.2.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "chai": "^3.5.0",
     "event-stream": "^3.1.5",

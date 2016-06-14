@@ -173,6 +173,7 @@ gulp.task('watch', ['statics', 'default'], function () {
  * Default task
  */
 gulp.task('default', ['lint', 'build-all']);
+<<<<<<< HEAD
 /*
 zip
 gulp.task('zip', function () {
@@ -180,6 +181,11 @@ gulp.task('zip', function () {
     .pipe(zip('test.zip'))
     .pipe(gulp.dest('./dist'));
 });*/
+=======
+/**
+ * zip task
+ */
+>>>>>>> refs/remotes/origin/master
 gulp.task('zip', function ()  {
   console.log('Hello Gulp! this is Zip')
   return gulp.src('src/**')
