@@ -5,44 +5,44 @@ margin:0px auto;
 #content{
     margin:0px auto;
     padding: 50px 0px 50px 0px;
-    border-bottom: 1px ridge;
+    /*border-bottom: transparent;*/
     min-height: 400px;
         }
 .row-content{
     margin:0px auto;
     padding: 50px 0px 50px 0px;
-    border-bottom: 1px ridge;
-    min-height: 400px;
+  /*border-bottom: 1px ridge;*/
+  min-height: 400px;
 }
 .row-footer{
-    margin:0px auto;
-    padding: 0px auto;
-    border: 1px floralwhite;
-    background-color: whitesmoke;
+  margin:0px auto;
+  padding: 0px auto;
+  border: 1px floralwhite;
+  background-color: #d5d5d5;
 }
 .jumbotron {
-    margin: 0px auto;
-    padding: 70px 0px 70px 0px;
-    border-bottom: 1px ridge;
-    min-height: 400px;
-    color: white;
+  margin: 0px auto;
+  padding: 70px 0px 70px 0px;
+  border-bottom: 1px ridge;
+  min-height: 400px;
+  color: white;
 }
 .navbar-header img{
-    width:50px;
-    height:50px;
-    position:fixed;
-    top:0px;
-    }
+  width:50px;
+  height:50px;
+  position:fixed;
+  top:0px;
+  }
 .navbar
 {
-    margin: 0px auto;
-    border: 1px ridge;
-  background-color: #ffffff;
+  margin: 0px auto;
+  border: 1px ridge;
+background-color: #ffffff;
 }
 .modal
 {
-    margin: 0px auto;
-   /* border: 1px ridge;*/
+  margin: 0px auto;
+ /* border: 1px ridge;*/
     padding: 70px 0px 70px 0px;
     float: inherit;
     width: 60%;
@@ -72,7 +72,7 @@ body
 }
 footer
 {
-    background: #ea6602;
+    background: #d5d5d5;
     padding:0px 50px 50px 0px;
 }
 
@@ -98,6 +98,7 @@ footer
 .carousel{
   height: 350px;
   overflow: hidden;
+  interval: 10;
 }
 
 .imglist{
@@ -106,5 +107,22 @@ footer
 
 .carousel-control{
 height: 495px;
+}
+#signin
+{
+  transition: all linear 0.5s;
+  background-color: lightblue;
+  height: 100px;
+  width: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.ng-hide {
+  height: 0;
+  width: 0;
+  background-color: transparent;
+  top:-200px;
+  left: 200px;
 }
 

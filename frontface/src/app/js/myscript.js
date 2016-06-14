@@ -2,7 +2,7 @@
  * Created by admin on 5/24/2016.*/
 
 angular
-  .module("myModule", ['ngRoute'])
+  .module('myModule', ['ngRoute'])
   .config(function ($routeProvider) {
     $routeProvider
       .when("/", {

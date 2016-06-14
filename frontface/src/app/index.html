@@ -4,8 +4,12 @@
   <script src="js/jquery-1.12.4.js"></script>
   <script src="js/angular.min.js"></script>
   <script src="js/angular-route.min.js"></script>
-  <script src="js/myscript.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
+   <script src="js/myscript.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/umd/carousel.js"></script>
+  <script src="twitter-bootstrap-v2/docs/assets/js/bootstrap-transition.js"></script>
+
   <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
   <title>Softhouse AB</title>
   <meta charset="utf-8">
@@ -21,7 +25,7 @@
 
 </head>
 
-<body>
+<body >
 <nav class="navbar navbar-fixed-top" role="navigation">
   <div class="container ">
     <div class="navbar-header">
@@ -32,95 +36,26 @@
 
     <ul class="nav navbar-nav navbar-right">
 
-      <li><a href="#/exam"><b><i class="fa fa-laptop" aria-hidden="true"></i> Exam</b></a></li>
-      <li><a href="#/home"><b><span class="glyphicon glyphicon-home"
+      <li><a href="#/exam" ><b><i class="fa fa-laptop" aria-hidden="true"></i> Exam</b></a></li>
+      <li><a href="#/home" ><b><span class="glyphicon glyphicon-home"
                                     aria-hidden="true"></span> Home</b></a></li>
-      <li><a href="#/takeExam"><b><span class="glyphicon glyphicon-pencil"
+      <li><a href="#/takeExam" ><b><span class="glyphicon glyphicon-pencil"
                                         aria-hidden="true"></span> Take Exam</b></a></li>
-      <li><a href="#/about"><b><span class="glyphicon glyphicon-info-sign"></span> About</b></a></li>
-      <li><a href="#/contact"><b><i class="fa fa-phone"></i> Contact</b></a></li>
-      <li class="active"><a href="#/career" data-toggle="modal_carrier"><b><i class="fa fa-graduation-cap"
+      <li><a href="#/about" ><b><span class="glyphicon glyphicon-info-sign"></span> About</b></a></li>
+      <li><a href="#/contact" ><b><i class="fa fa-phone"></i> Contact</b></a></li>
+      <li class="active" ><a href="#/career" data-toggle="modal_carrier" ><b><i class="fa fa-graduation-cap"
                                                                               aria-hidden="true"></i> Career</b></a>
       </li>
-      <li><a href="#signin" data-toggle="modal"><b><span class="glyphicon glyphicon-user"></span> SignIn</b></a></li>
+      <li><a href="" data-toggle="modal" ng-model="myCheck"><b><span class="glyphicon glyphicon-user"></span> SignIn</b></a></li>
 
     </ul>
   </div>
 </nav>
-<div class="container" id="content">
+<div class="container " id="content" >
   <ng-view></ng-view>
 
   </div>
-<!--<div class="container"><br><br><br>
-      <div id="mycarousel" class="carousel slide" data-ride="carousel">
 
-    <ol class="carousel-indicators">
-      <li data-target="#mycarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#mycarousel" data-slide-to="1"></li>
-      <li data-target="#mycarousel" data-slide-to="2"></li>
-      <li data-target="#mycarousel" data-slide-to="3"></li>
-    </ol>
-
-    <div class="carousel-inner" role="listbox">
-      <div class="item active">
-        <img class="img-responsive" src="images/1.png" alt="Efficient Code">
-      </div>
-      <div class="item">
-        <img class="img-responsive" src="images/2.jpg" alt="Vinnova Program">
-      </div>
-      <div class="item">
-        <img class="img-responsive" src="images/3.jpg" alt="Vinnova Program">
-      </div>
-      <div class="item">
-        <img class="img-responsive" src="images/4.png" alt="Vinnova Program">
-      </div>
-    </div>
-  </div>
-
-  <a class="left carousel-control" href="#mycarousel" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#mycarousel" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-  </div>
-
-<hr>
-<div class="container">
-  <div>
-    <blockquote align="center">
-      <cite><h2>Continuous Delivery, Enhancing the Quality</h2></cite>
-    </blockquote>
-  </div>
-<hr>
-  <div class="row row-content">
-    <div class="col-xs-12 col-sm-5">
-    <article>
-      <h1>Looking For Industrial Exposure?</h1><span class="label label-danger">New</span>
-      <p align="justify">Are you a student that graduated recently, or is going to graduate soon? Join our training
-        program. We help you acquire the necessary skills that the industries expect you to have. You also get to work
-      on live projects with us under the supervision of our experienced scrum masters. This will help you submit a better resume
-        when looking for jobs.</p>
-      <i align="center">What are you waiting for? Get started by getting in touch with us!</i>
-    </article>
-    </div>
-    <div class="col-sm-6 pull-right">
-      <h1>With Our Expertise, we can help you in:</h1>
-      <ul class="imglist">
-        <li>Business Development</li>
-        <li>Software Development</li>
-        <li>Personnel Development</li>
-        <li>Code Optimization</li>
-      </ul>
-      <p align="justify">Hire us when you need team players who master modern frameworks and development environments.
-        Let some of the leading experts on Lean & Agile, Scrum and Kanban grow your business!</p>
-    </div>
->>>>>>> added content on site load page
-</div>
-</div>
-</div>-->
 
 <footer>
   <div class="container" align="center">
@@ -176,7 +111,7 @@
   </div>
 
 </footer>
-<div class="modal fade " id="signin" role="dialog">
+<div class="modal fade " id="signin" role="dialog" ng-hide="myCheck">
   <div class="modal-content">
     <div class="modal-header">
       <h3>Welcome. Please login.</h3>
