@@ -5,6 +5,14 @@ angular
   .module("myModule", ['ngRoute'])
   .config(function ($routeProvider) {
     $routeProvider
+      .when("/", {
+        templateUrl: "templates/onloadcontent.html",
+        controller: "onloadController"
+      })
+      .when("/mycarousel", {
+        templateUrl: "templates/onloadcontent.html",
+        controller: "onloadController"
+      })
       .when("/home", {
         templateUrl: "templates/home.html",
         controller: "homeController"
