@@ -1,34 +1,53 @@
 <div>
-  <ol>
+
+  <form name="TakeExamForm" ng-submit="SubmitTakeExamForm()">
+<ol>
     <li ng-repeat="q in questionForExam">
       Question: {{q.question}}
 
       <br>
       <b>Options:</b><br>
-      <div class="radio">
-        <label>
-          <input ng-model="selected.option" type="radio" name="A" ng-value="'opa'" ng-click="">
-          A: {{q.opa}}
-        </label>
-      </div>
+      <div>
+        <div class="radio">
 
-      <div class="radio">
-        <label>
-          <input ng-model="selected.option" type="radio" name="B" ng-value="'opb'">
-          B: {{q.opb}}
-        </label>
-      </div>
+          <input type="radio" name="{{q.id}}" value="opa" ng-model="$parent.selec[q.id]">
+          A: {{q.opa}}<br>
 
-      <div class="radio">
-        <label>
-          <input ng-model="selected.option" type="radio" name="C" ng-value="'opc'">
+
+        </div>
+
+        <div class="radio">
+
+          <input type="radio" name="{{q.id}}" value="opb" ng-model="$parent.selec[q.id]">
+          B: {{q.opb}}<br>
+        </div>
+
+        <div class="radio">
+
+          <input type="radio" name="{{q.id}}" value="opc" ng-model="$parent.selec[q.id]">
           C: {{q.opc}}
-        </label>
+
+        </div>
       </div>
-      <!--{{((selectedoption === q.corr_op) ? '1': '0')}}
--->
+
+      <!--{{((selectedoption === q.corr_op) ? '1': '0')}}-->
+
     </li>
-  </ol>
+</ol>
+
+    <div class="form-group form-inline">
+      <div class="col-sm-4 col-sm-push-2" align="center">
+        <button type="submit" class="col-sm-6 col-sm-pull-1 btn btn-info-sky">Submit</button>
+      </div>
+      <div class="col-sm-6 col-sm-push-3" align="center">
+        <button type="reset" class="col-sm-6 btn btn-warning ">Reset</button>
+      </div>
+    </div>
+
+  </form>
+
+  <p>div{{selec}}</p>
+
 </div>
 
 

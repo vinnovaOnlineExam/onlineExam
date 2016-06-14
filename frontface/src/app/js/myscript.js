@@ -17,10 +17,10 @@ angular
         templateUrl: "templates/home.html",
         controller: "homeController"
       })
-      .when("/exam/postExam/takeExam", {
-        templateUrl: "templates/exam_instructions.html",
-        controller: "examTestController"
-      })
+      /*.when("/exam/postExam/takeExam", {
+       templateUrl: "templates/exam_instructions.html",
+       controller: "examTestController"
+       })*/
       .when("/exam", {
         templateUrl: "templates/admin_page.html",
         controller: "adminController"
@@ -47,7 +47,7 @@ angular
       })
       .when("/exam/createExam/takeExam", {
         templateUrl: "templates/takeExam.html",
-        controller: "answerChecking"
+        controller: "takeExamController"
       })
       .when("/exam/postExam", {
         templateUrl: "templates/postExam.html",
@@ -153,7 +153,7 @@ angular
       $http.get('http://localhost:8080/api/questions?ids=' + $scope.newIds)
         .then(function (response) {
           $scope.questionForExam = response.data;
-          console.log(questionForExam);
+          //console.log(questionForExam);
         });
 
     }
@@ -194,10 +194,11 @@ angular
     $scope.showQuestions = angular.copy($rootScope.questionsChose);
   })
 
-  .controller("answerChecking", function ($scope, $rootScope, $location, $http) {
+  .controller("takeExamController", function ($scope, $location, $http) {
 
     $scope.newIds = "";
     $scope.questionForExam = [];
+    $scope.selec = {};
 
 
     $scope.newIds = $location.search().ids;
@@ -207,21 +208,33 @@ angular
       .then(function (response) {
         $scope.questionForExam = response.data;
 
-        window.alert('niise', $scope.questionForExam.length);
-        doSomethingLater();
-      })
+        //window.alert('niise', $scope.questionForExam.length);
+        console.log($scope.questionForExam);
 
-    function doSomethingLater() {
-      //THis will run when HTTP is done.
-      if (angular.isObject($scope.questionForExam)) {
-        var noOfIds = $scope.questionForExam.length;
-        window.alert("ids" + noOfIds);
-        for (i = 0; i < noOfIds; i++) {
-          console.log("from for", $scope.questionForExam[i]);
-          window.alert("from for", $scope.questionForExam[i]);
-        }
-      }
-    }
+      });
+    $scope.SubmitTakeExamForm = function () {
+      $http.post('http://localhost:8080/api/questions/', $scope.selec)
+
+
+        .success(function (data) {
+          if (data.errors) {
+            $scope.noExam = data.errors;
+          }
+          else $scope.selec = null;
+        })
+    };
+
+    /*function doSomethingLater() {
+     //THis will run when HTTP is done.
+     if (angular.isObject($scope.questionForExam)) {
+     var noOfIds = $scope.questionForExam.length;
+     //window.alert("ids" + noOfIds);
+     for (i = 0; i < noOfIds; i++) {
+     console.log("from for", $scope.questionForExam[i]);
+     //window.alert("from for", $scope.questionForExam[i]);
+     }
+     }
+     }*/
 
 
     //}

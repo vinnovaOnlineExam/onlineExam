@@ -46,10 +46,6 @@ public class QuestionResource {
 		}
 	}
 
-	public List<Question> listQuestions() {
-		return questionDAO.getAllQuestions();
-	}
-
 	@GET
 	@Timed
 	public List<Question> nebondaGet(@QueryParam("ids") String ids, @QueryParam("topic") String topic) {
@@ -57,6 +53,10 @@ public class QuestionResource {
 			return listQuestions();
 		else
 			return getQuestionByIdList(ids);
+	}
+
+	public List<Question> listQuestions() {
+		return questionDAO.getAllQuestions();
 	}
 
 	public List<Question> getQuestionByIdList(String ids) {
