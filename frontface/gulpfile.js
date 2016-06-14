@@ -174,11 +174,17 @@ gulp.task('watch', ['statics', 'default'], function () {
  */
 gulp.task('default', ['lint', 'build-all']);
 /*
-zip */
+zip
 gulp.task('zip', function () {
   return gulp.src('./**')
     .pipe(zip('test.zip'))
     .pipe(gulp.dest('./dist'));
+});*/
+gulp.task('zip', function ()  {
+  console.log('Hello Gulp! this is Zip')
+  return gulp.src('src/**')
+    .pipe(zip('archive.zip'))
+    .pipe(gulp.dest('./'));
 });
 
 /**
