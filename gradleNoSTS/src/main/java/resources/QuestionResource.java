@@ -1,6 +1,5 @@
 package resources;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -66,16 +65,17 @@ public class QuestionResource {
 				.map(id -> questionDAO.findQuestionById(Integer.parseInt(id))) //
 				.filter(q -> q != null) //
 				.collect(Collectors.toList());
-//		List<Question> qList = new ArrayList<Question>();
-//		if (idList.length > 0) {
-//			for (int i = 0; i < idList.length; i++) {
-//				Question q = questionDAO.findQuestionById(Integer.parseInt(idList[i]));
-//				if (q != null) {
-//					qList.add(q);
-//				}
-//			}
-//		}
-//		return qList;
+		// List<Question> qList = new ArrayList<Question>();
+		// if (idList.length > 0) {
+		// for (int i = 0; i < idList.length; i++) {
+		// Question q =
+		// questionDAO.findQuestionById(Integer.parseInt(idList[i]));
+		// if (q != null) {
+		// qList.add(q);
+		// }
+		// }
+		// }
+		// return qList;
 	}
 
 	@POST
