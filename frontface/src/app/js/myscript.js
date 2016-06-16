@@ -237,15 +237,32 @@ angular
         console.log($scope.questionForExam);
 
 
-        for (i = 0; i < $scope.questionForExam.length; i++) {
-          console.log($scope.questionForExam);
+        for (i=0;i<$scope.questionForExam.length;i++){
+
           //$scope.selec[i].question = $scope.questionForExam[i].id;
-          $scope.selec.push({"question": $scope.questionForExam[i].id.toString(), "option": ""});
+          $scope.selec.push({"question":$scope.questionForExam[i].id.toString(),"option":""});
 
         }
         /*angular.forEach($scope.questionForExam.id,function (value) {
-         this.push(question+":"+value);
-         },$scope.selec);*/
+          this.push(question+":"+value);
+        },$scope.selec);*/
+        console.log($scope.questionForExam);
+        //shuffle question
+        /*
+         var shuffleArray = function(array) {
+         var m = questionForExam.length, t, i;
+
+         while (m) {
+         i = Math.floor(Math.random() * m--);
+         t = questionForExam[m];
+         questionForExam[m] = questionForExam[i];
+         questionForExam[i] = t;
+         }
+
+         return questionForExam;
+         console.log(questionForExam);
+         }
+         */
 
       });
     $scope.SubmitTakeExamForm = function () {
@@ -256,7 +273,7 @@ angular
           if (data.errors) {
             $scope.noExam = data.errors;
           }
-          else $scope.selec = null;
+          //else $scope.selec = null;
         })
     };
 
