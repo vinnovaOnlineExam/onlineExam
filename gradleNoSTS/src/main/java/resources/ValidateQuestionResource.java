@@ -3,6 +3,7 @@ package resources;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -29,7 +30,7 @@ public class ValidateQuestionResource {
 
 	@POST
 	@Timed
-	public Validate validateQuestion(List<Validate> validates) {
+	public void validateQuestion(List<Validate> validates) {
 		score = 0;
 		for (Validate validate : validates) {
 			String quest = validate.getQuestion();
@@ -42,7 +43,14 @@ public class ValidateQuestionResource {
 			}
 		}
 		System.out.println("ssssssssssssssssssssssss" + score);
-		return new Validate(score);
 
+		// return new Validate(score);
+
+	}
+
+	@GET
+	@Timed
+	public Integer sayScore() {
+		return score;
 	}
 }
