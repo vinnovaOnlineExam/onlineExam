@@ -128,7 +128,7 @@ angular
       var numberEntered = $scope.noOfQuestions;
       //return $scope.numberEntered;
       //return $scope.noOfQuestions;
-    //  if (numberEntered < $scope.questionForExam.length && numberEntered>0) {
+      if ($scope.noOfQuestions <= $scope.questionGotFirst.length && $scope.noOfQuestions > 0) {
         for (var i = 0; i < numberEntered; i++) {
 
           // $scope.questionsChose{"examOpa"}.push($scope.questionGotFirst[i].opa);
@@ -142,26 +142,28 @@ angular
         //return $scope.AbsUrl;
 
 
-     // }
-    //  else {
-      //  $scope.p = 'please check the entered questions';
-       // window.alert($scope.p);
-     // }
-    }
+        }
+          else {
+          $scope.p = 'please check the entered questions';
+         window.alert($scope.p);
+        console.log($scope.noOfQuestions);
+        console.log($scope.questionGotFirst.length);
+         }
+      }
 
-    // $rootScope.Examlink=angular.copy($scope.operateQuestions());
-    //console.log($rootScope.Examlink);
+      // $rootScope.Examlink=angular.copy($scope.operateQuestions());
+      //console.log($rootScope.Examlink);
 
-    $scope.newIds = $location.search().ids;
+      $scope.newIds = $location.search().ids;
 
-    if ($scope.newIds != null && $scope.newIds.length > 0) {
-      $http.get('http://localhost:8080/api/questions?ids=' + $scope.newIds)
-        .then(function (response) {
-          $scope.questionForExam = response.data;
-          //console.log(questionForExam);
-        });
+      if ($scope.newIds != null && $scope.newIds.length > 0) {
+        $http.get('http://localhost:8080/api/questions?ids=' + $scope.newIds)
+          .then(function (response) {
+            $scope.questionForExam = response.data;
+            //console.log(questionForExam);
+          });
 
-    }
+      }
 
 
   })
@@ -207,6 +209,22 @@ angular
 
 
     $scope.newIds = $location.search().ids;
+    var shuffleArray = function(array) {
+      var m = array.length, t, i;
+
+      // While there remain elements to shuffle
+      while (m) {
+        // Pick a remaining element…
+        i = Math.floor(Math.random() * m--);
+
+        // And swap it with the current element.
+        t = array[m];
+        array[m] = array[i];
+        array[i] = t;
+      }
+
+      return array;
+    }
 
     //if ($scope.newIds != null && $scope.newIds.length > 0) {
     $http.get('http://localhost:8080/api/questions?ids=' + $scope.newIds)
@@ -215,9 +233,12 @@ angular
          return 0.24 - Math.random();
          }*/
         $scope.questionForExam = response.data;
+        shuffleArray($scope.questionForExam);
+        console.log($scope.questionForExam);
+
 
         for (i = 0; i < $scope.questionForExam.length; i++) {
-
+          console.log($scope.questionForExam);
           //$scope.selec[i].question = $scope.questionForExam[i].id;
           $scope.selec.push({"question": $scope.questionForExam[i].id.toString(), "option": ""});
 
@@ -226,26 +247,9 @@ angular
          this.push(question+":"+value);
          },$scope.selec);*/
 
-        //shuffle question
-        /*
-         var shuffleArray = function(array) {
-         var m = questionForExam.length, t, i;
-
-         while (m) {
-         i = Math.floor(Math.random() * m--);
-         t = questionForExam[m];
-         questionForExam[m] = questionForExam[i];
-         questionForExam[i] = t;
-         }
-
-         return questionForExam;
-         console.log(questionForExam);
-         }
-         */
-
       });
     $scope.SubmitTakeExamForm = function () {
-      $http.post('http://localhost:8080/api/questions/', $scope.selec)
+      $http.post('http://localhost:8080/api/Qvalidate/', $scope.selec)
 
 
         .success(function (data) {
@@ -323,6 +327,21 @@ angular
 
    }
 
+   $scope.shuffleArray = function(array) {
+   $scope.m = $scope.questionForExam.length,
+   $scope.t,
+   $scope.i;
+
+   while ($scope.m) {
+   $scope.i = Math.floor(Math.random() * $scope.m--);
+   $scope.t = $scope.questionForExam[m];
+   $scope.questionForExam[m] = $scope.questionForExam[i];
+   $scope.questionForExam[i] = t;
+   }
+
+   return $scope.questionForExam;
+   console.log($scope.questionForExam);
+   }
 
    for (i = 0; i < 4; i++) {
    if ($scope.selectedoption === $scope.questionShow..corr_op) {
