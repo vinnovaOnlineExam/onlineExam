@@ -90,7 +90,7 @@ angular
 
 
   })
-  .controller("createExamController", function ($scope, $location, $rootScope, $http) {
+  .controller("createExamController", function ($scope, $location, $rootScope, $http,$window) {
 
     $scope.questionGotFirst = [];
     $scope.questionForExam = [];
@@ -128,20 +128,25 @@ angular
       var numberEntered = $scope.noOfQuestions;
       //return $scope.numberEntered;
       //return $scope.noOfQuestions;
+    //  if (numberEntered < $scope.questionForExam.length && numberEntered>0) {
+        for (var i = 0; i < numberEntered; i++) {
 
-      for (var i = 0; i < numberEntered; i++) {
+          // $scope.questionsChose{"examOpa"}.push($scope.questionGotFirst[i].opa);
+          console.log($scope.questionGotFirst[i]);
+          $scope.ids[i] = angular.copy($scope.questionGotFirst[i].id);
+          //posting submittedquestions
+        }
 
-        // $scope.questionsChose{"examOpa"}.push($scope.questionGotFirst[i].opa);
-        console.log($scope.questionGotFirst[i]);
-        $scope.ids[i] = angular.copy($scope.questionGotFirst[i].id);
-        //posting submittedquestions
-      }
-
-      $scope.AbsUrl = $location.absUrl() + "/takeExam?ids=" + $scope.ids.toString();
-      $rootScope.Examlink = $location.absUrl() + "/takeExam?ids=" + $scope.ids.toString();
-      //return $scope.AbsUrl;
+        $scope.AbsUrl = $location.absUrl() + "/takeExam?ids=" + $scope.ids.toString();
+        $rootScope.Examlink = $location.absUrl() + "/takeExam?ids=" + $scope.ids.toString();
+        //return $scope.AbsUrl;
 
 
+     // }
+    //  else {
+      //  $scope.p = 'please check the entered questions';
+       // window.alert($scope.p);
+     // }
     }
 
     // $rootScope.Examlink=angular.copy($scope.operateQuestions());
@@ -198,29 +203,29 @@ angular
 
     $scope.newIds = "";
     $scope.questionForExam = [];
-    $scope.selec =[];
+    $scope.selec = [];
 
 
-    $scope.newIds = $location.search().ids ;
+    $scope.newIds = $location.search().ids;
 
     //if ($scope.newIds != null && $scope.newIds.length > 0) {
     $http.get('http://localhost:8080/api/questions?ids=' + $scope.newIds)
       .then(function (response) {
         /*$scope.random = function() {
-          return 0.24 - Math.random();
-        }*/
+         return 0.24 - Math.random();
+         }*/
         $scope.questionForExam = response.data;
 
-        for (i=0;i<$scope.questionForExam.length;i++){
+        for (i = 0; i < $scope.questionForExam.length; i++) {
 
           //$scope.selec[i].question = $scope.questionForExam[i].id;
-          $scope.selec.push({"question":$scope.questionForExam[i].id.toString(),"option":""});
+          $scope.selec.push({"question": $scope.questionForExam[i].id.toString(), "option": ""});
 
         }
         /*angular.forEach($scope.questionForExam.id,function (value) {
-          this.push(question+":"+value);
-        },$scope.selec);*/
-        console.log($scope.questionForExam);
+         this.push(question+":"+value);
+         },$scope.selec);*/
+
         //shuffle question
         /*
          var shuffleArray = function(array) {
