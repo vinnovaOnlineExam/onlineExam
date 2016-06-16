@@ -10,6 +10,7 @@ allowedOrigins:
 
 template: Hello, %s!
 defaultName: Strange
+score: 0
 
 #db settings
 database:

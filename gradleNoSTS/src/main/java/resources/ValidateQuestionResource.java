@@ -17,19 +17,32 @@ import databaseDAO.QuestionDAO;
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class ValidateQuestionResource {
+	// private UserDAO userDAO;
 	private QuestionDAO questionDAO;
+	private Integer score;
 
-	public ValidateQuestionResource(QuestionDAO dao) {
+	public ValidateQuestionResource(QuestionDAO dao, Integer score) {
 		questionDAO = dao;
+		this.score = score;
+
 	}
 
 	@POST
 	@Timed
-	public void validateQuestion(List<Validate> validates) {
-		
-		// for (Validate validate : validates) {
-		// validate.getQuestion();
-		// }
-	}
+	public Validate validateQuestion(List<Validate> validates) {
+		score = 0;
+		for (Validate validate : validates) {
+			String quest = validate.getQuestion();
+			// System.out.println("************" + quest);
+			// System.out.println("************" +
+			// questionDAO.findQuestionById(Integer.parseInt("1")));
+			if (validate.getOption().equals(questionDAO.findQuestionById(Integer.parseInt(quest)).getCorr_op())) {
+				score = score + 1;
 
+			}
+		}
+		System.out.println("ssssssssssssssssssssssss" + score);
+		return new Validate(score);
+
+	}
 }

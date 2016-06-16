@@ -240,14 +240,13 @@ angular
 
       });
     $scope.SubmitTakeExamForm = function () {
-      $http.post('http://localhost:8080/api/questions/', $scope.selec)
-
+      $http.post('http://localhost:8080/api/Qvalidate/', $scope.selec)
 
         .success(function (data) {
           if (data.errors) {
             $scope.noExam = data.errors;
           }
-          else $scope.selec = null;
+          //else $scope.selec = null;
         })
     };
 
