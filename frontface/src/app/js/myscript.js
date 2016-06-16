@@ -198,18 +198,45 @@ angular
 
     $scope.newIds = "";
     $scope.questionForExam = [];
-    $scope.selec = {};
+    $scope.selec =[];
 
 
-    $scope.newIds = $location.search().ids;
+    $scope.newIds = $location.search().ids ;
 
     //if ($scope.newIds != null && $scope.newIds.length > 0) {
     $http.get('http://localhost:8080/api/questions?ids=' + $scope.newIds)
       .then(function (response) {
+        /*$scope.random = function() {
+          return 0.24 - Math.random();
+        }*/
         $scope.questionForExam = response.data;
 
-        //window.alert('niise', $scope.questionForExam.length);
+        for (i=0;i<$scope.questionForExam.length;i++){
+
+          //$scope.selec[i].question = $scope.questionForExam[i].id;
+          $scope.selec.push({"question":$scope.questionForExam[i].id.toString(),"option":""});
+
+        }
+        /*angular.forEach($scope.questionForExam.id,function (value) {
+          this.push(question+":"+value);
+        },$scope.selec);*/
         console.log($scope.questionForExam);
+        //shuffle question
+        /*
+         var shuffleArray = function(array) {
+         var m = questionForExam.length, t, i;
+
+         while (m) {
+         i = Math.floor(Math.random() * m--);
+         t = questionForExam[m];
+         questionForExam[m] = questionForExam[i];
+         questionForExam[i] = t;
+         }
+
+         return questionForExam;
+         console.log(questionForExam);
+         }
+         */
 
       });
     $scope.SubmitTakeExamForm = function () {
@@ -285,7 +312,8 @@ angular
    //posting data
    $scope.questionGotSecond = angular.copy($scope.questionGotFirst);
    //TODO: Math.rand() to get $scope.noOfQuestions many random variables between 0 and questionGotFirst.length
-   // For i=0 to noOfQuestions add $scope.questionGotFirst[previously randomised number] to new array and return
+   // For i=0 to noOfQues
+   tions add $scope.questionGotFirst[previously randomised number] to new array and return
    return $scope.questionGotSecond;
 
    }

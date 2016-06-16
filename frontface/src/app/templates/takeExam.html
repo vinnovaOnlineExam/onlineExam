@@ -2,29 +2,28 @@
 
   <form name="TakeExamForm" ng-submit="SubmitTakeExamForm()">
 <ol>
-    <li ng-repeat="q in questionForExam">
+    <li ng-repeat="q in questionForExam ">
       Question: {{q.question}}
 
       <br>
       <b>Options:</b><br>
-      <div>
+      <div >
         <div class="radio">
 
-          <input type="radio" name="{{q.id}}" value="opa" ng-model="$parent.selec[q.id]">
+          <input type="radio" name="{{q.id}}" value="opa" ng-model="$parent.selec[$index].option">
           A: {{q.opa}}<br>
-
 
         </div>
 
         <div class="radio">
 
-          <input type="radio" name="{{q.id}}" value="opb" ng-model="$parent.selec[q.id]">
+          <input type="radio" name="{{q.id}}" value="opb" ng-model="$parent.selec[$index].option">
           B: {{q.opb}}<br>
         </div>
 
         <div class="radio">
 
-          <input type="radio" name="{{q.id}}" value="opc" ng-model="$parent.selec[q.id]">
+          <input type="radio" name="{{q.id}}" value="opc" ng-model="$parent.selec[$index].option">
           C: {{q.opc}}
 
         </div>
@@ -46,7 +45,7 @@
 
   </form>
 
-  <p>div{{selec}}</p>
+  <p>div{{selec |json}}</p>
 
 </div>
 
