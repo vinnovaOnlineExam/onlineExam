@@ -55,6 +55,10 @@ public class CleanCodeApplication extends Application<ApplicationConfiguration> 
 		ExamDAO examDAO = jdbi.onDemand(ExamDAO.class);
 		examDAO.createExamsTable();
 
+		ValidateQuestionResource validateQuestionResource = new ValidateQuestionResource(questionDAO,
+				configuration.getScore());
+		environment.jersey().register(validateQuestionResource);
+
 		// environment.addResource(new UserMgmnt(myDAO));
 		UserResource userResource = new UserResource(userDAO);
 		environment.jersey().register(userResource);
@@ -64,9 +68,6 @@ public class CleanCodeApplication extends Application<ApplicationConfiguration> 
 
 		ExamQuestionResource examQuestionResource = new ExamQuestionResource(examDAO);
 		environment.jersey().register(examQuestionResource);
-
-		ValidateQuestionResource validateQuestionResource = new ValidateQuestionResource(questionDAO);
-		environment.jersey().register(validateQuestionResource);
 
 	}
 

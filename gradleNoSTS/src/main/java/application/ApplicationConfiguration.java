@@ -12,6 +12,8 @@ import io.dropwizard.db.DataSourceFactory;
 
 public class ApplicationConfiguration extends Configuration {
 
+	private Integer score;
+
 	@NotEmpty
 	private String template;
 
@@ -38,6 +40,14 @@ public class ApplicationConfiguration extends Configuration {
 	@JsonProperty
 	public void setDefaultName(String name) {
 		this.defaultName = name;
+	}
+
+	public Integer getScore() {
+		return score;
+	}
+
+	public void setScore(Integer score) {
+		this.score = score;
 	}
 
 	@NotNull

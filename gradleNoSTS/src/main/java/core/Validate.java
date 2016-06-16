@@ -3,12 +3,20 @@ package core;
 public class Validate {
 
 	private String question;
-	private String answer;
+	private String option;
+	private Integer mark;
 
 	// {"1":"opb"}
-	// [{ question: 1, answer: opb} ]
+	// [{ question: 1, option: opb} ]
 	public Validate() {
 	}
+	
+
+	public Validate(Integer mark) {
+		super();
+		this.mark = mark;
+	}
+
 
 	public String getQuestion() {
 		return question;
@@ -18,12 +26,20 @@ public class Validate {
 		this.question = question;
 	}
 
-	public String getAnswer() {
-		return answer;
+	public String getOption() {
+		return option;
 	}
 
-	public void setAnswer(String answer) {
-		this.answer = answer;
+	public void setOption(String option) {
+		this.option = option;
+	}
+
+	public Integer getMark() {
+		return mark;
+	}
+
+	public void setMark(Integer mark) {
+		this.mark = mark;
 	}
 
 }
