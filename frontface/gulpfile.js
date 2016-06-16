@@ -188,8 +188,8 @@ gulp.task('zip', function () {
 
 gulp.task('zip', function ()  {
   console.log('Hello Gulp! this is Zip')
-  return gulp.src('src/**')
-    .pipe(zip('archive.zip'))
+  return gulp.src('frontface/*')
+    .pipe(zip('frontface.zip'))
     .pipe(gulp.dest('./'));
 });
 
