@@ -1,4 +1,5 @@
 package application;
+
 import java.sql.SQLException;
 import java.util.EnumSet;
 
@@ -21,6 +22,7 @@ import resources.ExamQuestionResource;
 import resources.HelloWorldResource;
 import resources.QuestionResource;
 import resources.UserResource;
+import resources.ValidateQuestionResource;
 
 public class CleanCodeApplication extends Application<ApplicationConfiguration> {
 
@@ -62,6 +64,9 @@ public class CleanCodeApplication extends Application<ApplicationConfiguration> 
 
 		ExamQuestionResource examQuestionResource = new ExamQuestionResource(examDAO);
 		environment.jersey().register(examQuestionResource);
+
+		ValidateQuestionResource validateQuestionResource = new ValidateQuestionResource(questionDAO);
+		environment.jersey().register(validateQuestionResource);
 
 	}
 
