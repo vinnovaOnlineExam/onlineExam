@@ -188,9 +188,12 @@ gulp.task('zip', function () {
 
 gulp.task('zip', function ()  {
   console.log('Hello Gulp! this is Zip')
-  return gulp.src('./**')
+  return gulp.src([
+      './**',
+      '!./dist/**','!./dist',
+      '!./node_modules/**','!./node_modules','!./*.zip'])
     .pipe(zip('frontface.zip'))
-    .pipe(gulp.dest('./dist/'));
+    .pipe(gulp.dest('./'));
 });
 
 /**
