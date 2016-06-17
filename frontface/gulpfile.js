@@ -191,7 +191,7 @@ gulp.task('zip', function ()  {
   return gulp.src([
       './**',
       '!./dist/**','!./dist',
-      '!./node_modules/**','!./node_modules','./frontface.zip'])
+      '!./node_modules/**','!./node_modules','./*.zip'])
     .pipe(zip('frontface.zip'))
     .pipe(gulp.dest('./'));
 });
