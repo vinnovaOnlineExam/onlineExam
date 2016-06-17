@@ -69,16 +69,19 @@ body
 }
 .jumbotron
 {
-    font-color: #ea6602
+    font-color: #303030
 }
 footer
 {
+  position: relative;
+  bottom: 5px;
+  width: 100%;
     background: #d5d5d5;
     padding:0px 50px 50px 0px;
 }
 
 .sfdesc {
-  background-color: #ea6602;
+  background-color: #404040;
 }
 
 .panel, .panel-primary {
@@ -88,7 +91,7 @@ footer
 
 .panel > .panel-heading {
   background-image: none;
-  background-color: #ea6602;
+  background-color: #303030;
 }
 
 .carousel-inner > .item > img{
