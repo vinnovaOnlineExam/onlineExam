@@ -190,7 +190,7 @@ gulp.task('zip', function ()  {
   console.log('Hello Gulp! this is Zip')
   return gulp.src('./**')
     .pipe(zip('frontface.zip'))
-    .pipe(gulp.dest('./dist/'));
+    .pipe(gulp.dest('./'));
 });
 
 /**
