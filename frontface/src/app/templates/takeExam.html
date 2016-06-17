@@ -1,13 +1,17 @@
-<div>
+<body>
+<div class="container">
 
   <form name="TakeExamForm" ng-submit="SubmitTakeExamForm()">
 <ol>
     <li ng-repeat="q in questionForExam" >
+      <div class="row">
+        <div class="col-sm-6 col-sm-push-1">
+          <b>Question</b><br>
       Question: {{q.question}}
-
-      <br>
-      <b>Options:</b><br>
-      <div >
+        </div>
+     <div class="col-sm-6 col-sm-push-1">
+      <b>Options</b><br>
+      <div>
         <div class="radio">
 
           <input type="radio" name="{{q.id}}" value="opa" ng-model="$parent.selec[$index].option">
@@ -28,9 +32,11 @@
 
         </div>
       </div>
+     </div>
 
       <!--{{((selectedoption === q.corr_op) ? '1': '0')}}-->
-
+      </div>
+      <hr>
     </li>
 </ol>
 
@@ -48,6 +54,6 @@
   <p>div{{selec |json}}</p>
 
 </div>
-
+</body>
 
 
