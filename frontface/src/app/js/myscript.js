@@ -78,11 +78,11 @@ angular
   .controller("addQuestionController", function ($scope, $http) {
     $scope.question = {};
 
-    // $http.post('http://localhost:8080/api/questions',{"question":"How dodfsfadf you greet?","topic":"general","opa":"namasthe","opb":"hejsan","opc":"tjena","corr_op":"opa"})
+    // $http.post('/api/questions',{"question":"How dodfsfadf you greet?","topic":"general","opa":"namasthe","opb":"hejsan","opc":"tjena","corr_op":"opa"})
 
     $scope.SubmitAddQuestionForm = function () {
       //posting data
-      $http.post('http://localhost:8080/api/questions', $scope.question)
+      $http.post('/api/questions', $scope.question)
 
 
         .success(function (data) {
@@ -116,7 +116,7 @@ angular
     nisse.key = "asdadsd";
     $scope.questionsChose = [];
     $scope.questionsChose.examOpa = {};
-    $http.get('http://localhost:8080/api/questions')
+    $http.get('/api/questions')
       .then(function (response) {
         $scope.questionGotFirst = response.data;
       });
@@ -163,7 +163,7 @@ angular
       $scope.newIds = $location.search().ids;
 
       if ($scope.newIds != null && $scope.newIds.length > 0) {
-        $http.get('http://localhost:8080/api/questions?ids=' + $scope.newIds)
+        $http.get('/api/questions?ids=' + $scope.newIds)
           .then(function (response) {
             $scope.questionForExam = response.data;
             //console.log(questionForExam);
@@ -197,7 +197,7 @@ angular
     }
   })
   .controller("checkAndSubmitController", function ($scope, $http) {
-    $http.get('http://localhost:8080/api/questions')
+    $http.get('/api/questions')
       .then(function (response) {
         $scope.questionGotExam = response.data;
       });
@@ -233,7 +233,7 @@ angular
     }
 
     //if ($scope.newIds != null && $scope.newIds.length > 0) {
-    $http.get('http://localhost:8080/api/questions?ids=' + $scope.newIds)
+    $http.get('/api/questions?ids=' + $scope.newIds)
       .then(function (response) {
         /*$scope.random = function() {
          return 0.24 - Math.random();
@@ -272,7 +272,7 @@ angular
 
       });
     $scope.SubmitTakeExamForm = function () {
-      $http.post('http://localhost:8080/api/Qvalidate/', $scope.selec)
+      $http.post('/api/Qvalidate/', $scope.selec)
 
 
         .success(function (data) {
@@ -345,7 +345,7 @@ angular
   /*
    $scope.questionsChose = [];
    $scope.questionsChose.examOpa = {};
-   $http.get('http://localhost:8080/api/questions')
+   $http.get('/api/questions')
    .then(function (response) {
    $scope.questionGotFirst = response.data;
    });
@@ -405,7 +405,7 @@ angular
 
  $scope.questionsChose = [];
  $scope.questionsChose.examOpa = {};
- $http.get('http://localhost:8080/api/questions')
+ $http.get('/api/questions')
  .then(function (response) {
  $scope.questionGotFirst = response.data;
  });
@@ -444,7 +444,7 @@ angular
  $scope.newIds = $location.search().ids;
 
  if ($scope.newIds != null && $scope.newIds.length > 0) {
- $http.get('http://localhost:8080/api/questions?ids=' + $scope.newIds)
+ $http.get('/api/questions?ids=' + $scope.newIds)
  .then(function (response) {
  $scope.questionForExam = response.data;
  });
