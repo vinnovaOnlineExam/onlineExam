@@ -65,10 +65,16 @@ angular
         templateUrl: "templates/check_and_submit.html",
         controller: ""
       })
+
+      .when("/takeExam/score", {
+        templateUrl: "templates/score.html",
+        controller: "scoreController"
+      })
   })
   .controller("homeController", function ($scope) {
 
   })
+
   .controller("addQuestionController", function ($scope, $http) {
     $scope.question = {};
 
@@ -270,6 +276,7 @@ angular
 
 
         .success(function (data) {
+          $location.path('takeExam/score');
           if (data.errors) {
             $scope.noExam = data.errors;
           }
@@ -293,6 +300,14 @@ angular
     //}
 
 
+  })
+
+  .controller("scoreController", function ($scope,$http) {
+        $http.get('http://localhost:8080/api/Qvalidate/')
+          .then(function (response) {
+            $scope.result = response.data;
+            console.log($scope.result);
+          });
   })
 
 
