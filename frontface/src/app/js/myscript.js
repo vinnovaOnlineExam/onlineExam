@@ -7,15 +7,15 @@ angular
     $routeProvider
       .when("/", {
         templateUrl: "templates/onloadcontent.html",
-        controller: "onloadController"
+        controller: ""
       })
       .when("/register", {
         templateUrl: "templates/register.html",
         controller: "registerController"
       })
-      .when("/mycarousel", {
+     .when("/mycarousel", {
         templateUrl: "templates/onloadcontent.html",
-        controller: "onloadController"
+        controller: ""
       })
       .when("/home", {
         templateUrl: "templates/home.html",
