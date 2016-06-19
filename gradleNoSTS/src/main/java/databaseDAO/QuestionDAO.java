@@ -28,8 +28,14 @@ public interface QuestionDAO {
 	@SqlQuery("select * from QUESTIONS where question = :question")
 	Question findQuestionByName(@Bind("question") String question);
 
+	@SqlQuery("select * from QUESTIONS where topic = :it")
+	List<Question> getAllQuestionsByTopic(@Bind String topic);
+
 	@SqlQuery("select * from QUESTIONS")
 	List<Question> getAllQuestions();
+
+	@SqlQuery("select distinct topic from QUESTIONS")
+	List<String> getAllTopics();
 
 	@SqlUpdate("delete from QUESTIONS where id = :it")
 	void deleteQuestionById(@Bind int id);

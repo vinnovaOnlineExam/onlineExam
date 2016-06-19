@@ -1,8 +1,7 @@
 package resources;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -26,6 +25,14 @@ import databaseDAO.QuestionDAO;
 @Path("/questions")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
+// class ParameterBean {
+// @QueryParam("topic")
+// public String[] topic;
+//
+// @QueryParam("size")
+// public String[] size;
+// }
+
 public class QuestionResource {
 
 	private QuestionDAO questionDAO;
@@ -46,37 +53,70 @@ public class QuestionResource {
 		}
 	}
 
+	// @GET
+	// @Timed
+	// public List<Question> nebondaGet(@BeanParam ParameterBean paramBean) {
+	// System.out.println(paramBean.size);
+	// return getQuestions(paramBean.size, paramBean.topic);
+	// }
 	@GET
 	@Timed
-	public List<Question> nebondaGet(@QueryParam("ids") String ids, @QueryParam("topic") String topic) {
-		if (ids == null)
-			return listQuestions();
-		else
-			return getQuestionByIdList(ids);
+	public List<Question> nebondaGet(@QueryParam(value = "size") List<String> size,
+			@QueryParam(value = "topic") List<String> topic) {
+
+		System.out.println(size.size() + "      " + topic.size());
+		if (size.size() > 0) {
+			return getQuestions(size, topic);
+		} else {
+			return questionDAO.getAllQuestions();
+		}
+
 	}
 
-	public List<Question> listQuestions() {
-		return questionDAO.getAllQuestions();
+	public List<Question> getQuestions(List<String> size, List<String> topic) {
+		List<Question> qList = new ArrayList<Question>();
+		for (int i = 0; i < size.size(); i++) {
+			System.out.println("questions in topic are" + topic.get(i));
+			List<Question> topicQuestions = questionDAO.getAllQuestionsByTopic(topic.get(i));
+			System.out.println("questions  topic are" + topicQuestions.toString());
+
+			// int[] qSubList = new Random().ints(1,
+			// topicQuestions.size()).distinct().limit(Integer.parseInt(size.get(i)))
+			// .toArray();
+			// System.out.println("questions in topic are" +
+			// qSubList.toString());
+			for (int j = 0; j < Integer.parseInt(size.get(i)); j++) {
+				qList.add(topicQuestions.get(j));
+			}
+
+		}
+		return qList;
 	}
 
-	public List<Question> getQuestionByIdList(String ids) {
-		String[] idList = ids.split(",");
-		return Stream.of(idList) //
-				.map(id -> questionDAO.findQuestionById(Integer.parseInt(id))) //
-				.filter(q -> q != null) //
-				.collect(Collectors.toList());
-		// List<Question> qList = new ArrayList<Question>();
-		// if (idList.length > 0) {
-		// for (int i = 0; i < idList.length; i++) {
-		// Question q =
-		// questionDAO.findQuestionById(Integer.parseInt(idList[i]));
-		// if (q != null) {
-		// qList.add(q);
-		// }
-		// }
-		// }
-		// return qList;
-	}
+	// public List<Question> listQuestions(String topic) {
+	// return questionDAO.getAllQuestions(topic);
+	// }
+	//
+	// public List<Question> getQuestionByIdList(String ids) {
+	// String[] idList = ids.split(",");
+	// final int[] ints = new Random().ints(1,
+	// ).distinct().limit(Integer.parseInt(ids)).toArray();
+	//// return Stream.of(idList) //
+	//// .map(id -> questionDAO.findQuestionById(Integer.parseInt(id))) //
+	//// .filter(q -> q != null) //
+	//// .collect(Collectors.toList());
+	// List<Question> qList = new ArrayList<Question>();
+	// if (idList.length > 0) {
+	// for (int i = 0; i < idList.length; i++) {
+	// Question q =
+	// questionDAO.findQuestionById(Integer.parseInt(idList[i]));
+	// if (q != null) {
+	// qList.add(q);
+	// }
+	// }
+	// }
+	// return qList;
+	// }
 
 	@POST
 	@Timed

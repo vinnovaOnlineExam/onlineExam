@@ -1,5 +1,4 @@
-
-<body ng-controller="createExamController">
+<body>
 <div class="container col-sm-6 col-sm-offset-3" align="center">
   <div class="panel panel-primary">
     <div class="panel-heading">
@@ -25,31 +24,50 @@
 
            </div>
          </div>
-         -->
+
 
 
         <div class="form-group">
-          <select class='dropdown' ng-model="topic">
+          <select class='dropdown' ng-model="noOfQuestions.topic" >
             <option value="" disabled selected>Select the topic</option>
-            <option>HTML 5</option>
-            <option>CSS 3</option>
+            <option ng-click="addMoreQuestions()">General</option>
+            <option>HTML</option>
+            <option>CSS</option>
             <option>AngularJS</option>
             <option>Java</option>
             <option>Python</option>
           </select>
+-->
+      <p> {{noOfQuestions}}</p>
+      <p> {{allQuestions}}</p>
 
-          <label class="col-sm-4 control-label" align="center">Enter the no. of Questions</label>
-          <div>
-             <input type="number" ng-model="noOfQuestions">
-          </div>
-        </div>
+      <table>
+        <tr>
+          <th>Topic</th>
+          <th>No Of Questions</th>
+        </tr>
+        <tr ng-repeat="t in questionDetails">
+          <td >{{t.topic}}</td> <!--ng-model="noOfQuestions.topic"-->
+          <td><select ng-model="noOfQuestions[$index].size" class='dropdown'>
+            <option  ng-repeat="n in range(1,t.maxNo)"  ng-click="operateQuestions()">{{n}}</option>
+          </select></td>
+
+        </tr>
+      </table>
+
+      <!--<label class="col-sm-4 control-label" align="center">Enter the no. of Questions</label>
+           <div>
+                <input type="number" ng-model="noOfQuestions.size">&nbsp
+             </div>
+           </div>
+      <button class="btn-warning btn" ng-click="addMoreQuestions()"><i class="fa fa-pencil"></i> Add Questions</button>
+         <p>{{noOfQuestions}}</p>
+         -->
+      <br>
       <button class="btn-warning btn" ng-click="operateQuestions()"><i class="fa fa-pencil"></i> Generate Exam</button>
       <br>
-    <br>
-<a ng-href="{{Examlink}}" target="_blank">{{Examlink}}</a>
-
-
-
+      <br>
+      <a ng-href="{{Examlink}}" target="_blank">{{Examlink}}</a>
 
 
       <!--</form>-->
