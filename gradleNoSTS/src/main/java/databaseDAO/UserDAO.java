@@ -28,6 +28,9 @@ public interface UserDAO {
 	@SqlQuery("select * from USERS where email = :it")
 	User findUserByEmail(@Bind String email);
 
+	@SqlQuery("select password from USERS where email = :it")
+	User findPasswordByEmail(@Bind String email);
+
 	@SqlQuery("select * from USERS")
 	List<User> getAllUsers();
 

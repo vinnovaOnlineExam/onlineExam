@@ -11,7 +11,7 @@ import javax.ws.rs.core.MediaType;
 
 import com.codahale.metrics.annotation.Timed;
 
-import core.Validate;
+import core.ValidateQ;
 import databaseDAO.QuestionDAO;
 
 @Path("/Qvalidate")
@@ -30,9 +30,9 @@ public class ValidateQuestionResource {
 
 	@POST
 	@Timed
-	public void validateQuestion(List<Validate> validates) {
+	public void validateQuestion(List<ValidateQ> validates) {
 		score = 0;
-		for (Validate validate : validates) {
+		for (ValidateQ validate : validates) {
 			String quest = validate.getQuestion();
 			// System.out.println("************" + quest);
 			// System.out.println("************" +
@@ -42,6 +42,7 @@ public class ValidateQuestionResource {
 
 			}
 		}
+
 		System.out.println("ssssssssssssssssssssssss" + score);
 
 		// return new Validate(score);

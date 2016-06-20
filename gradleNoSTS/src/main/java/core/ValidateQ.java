@@ -1,6 +1,6 @@
 package core;
 
-public class Validate {
+public class ValidateQ {
 
 	private String question;
 	private String option;
@@ -8,11 +8,11 @@ public class Validate {
 
 	// {"1":"opb"}
 	// [{ question: 1, option: opb} ]
-	public Validate() {
+	public ValidateQ() {
 	}
 	
 
-	public Validate(Integer mark) {
+	public ValidateQ(Integer mark) {
 		super();
 		this.mark = mark;
 	}

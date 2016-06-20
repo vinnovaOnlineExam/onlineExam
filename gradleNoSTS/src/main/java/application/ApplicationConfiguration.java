@@ -13,6 +13,7 @@ import io.dropwizard.db.DataSourceFactory;
 public class ApplicationConfiguration extends Configuration {
 
 	private Integer score;
+	private Integer user;
 
 	@NotEmpty
 	private String template;
@@ -48,6 +49,14 @@ public class ApplicationConfiguration extends Configuration {
 
 	public void setScore(Integer score) {
 		this.score = score;
+	}
+
+	public Integer getUser() {
+		return user;
+	}
+
+	public void setUser(Integer user) {
+		this.user = user;
 	}
 
 	@NotNull

@@ -23,6 +23,7 @@ import resources.HelloWorldResource;
 import resources.QuestionResource;
 import resources.UserResource;
 import resources.ValidateQuestionResource;
+import resources.ValidateUserResource;
 
 public class CleanCodeApplication extends Application<ApplicationConfiguration> {
 
@@ -58,6 +59,9 @@ public class CleanCodeApplication extends Application<ApplicationConfiguration> 
 		ValidateQuestionResource validateQuestionResource = new ValidateQuestionResource(questionDAO,
 				configuration.getScore());
 		environment.jersey().register(validateQuestionResource);
+
+		ValidateUserResource validateUserResource = new ValidateUserResource(userDAO, configuration.getScore());
+		environment.jersey().register(validateUserResource);
 
 		// environment.addResource(new UserMgmnt(myDAO));
 		UserResource userResource = new UserResource(userDAO);
