@@ -38,7 +38,7 @@ angular
       })
       .when("/takeExam", {
         templateUrl: "templates/exam_instructions.html",
-        controller: "examInstructionsController"
+        controller: "createExamController"
       })
       .when("/contact", {
         templateUrl: "templates/contact.html",
@@ -223,8 +223,11 @@ angular
 
         $scope.Examlink = $location.absUrl() + "/takeExam?" + $scope.allQuestions;
         $scope.allQuestions = null;
-
       }
+    
+    $scope.proceedToContinue = function () {
+      $location.path(Examlink);
+    }
 
       $scope.newIds = $location.search().ids;
 
@@ -252,11 +255,11 @@ angular
     .controller("contactController", function ($scope) {
 
     })
-    .controller("examInstructionsController", function ($scope, $location) {
-      $scope.proceedToContinue = function () {
-        $location.path('takeExam/checkSubmit');
+  /*  .controller("examInstructionsController", function ($scope, $location) {
+     $scope.proceedToContinue = function () {
+        $location.path($scope.Examlink);
       }
-    })
+    })*/
     .controller("checkAndSubmitController", function ($scope, $http) {
       $http.get('http://localhost:8080/api/questions')
         .then(function (response) {
