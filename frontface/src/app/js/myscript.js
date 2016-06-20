@@ -87,7 +87,7 @@ angular
   .controller("signInController",function ($scope) {
     $scope.sign={};
     $scope.signInForm = function () {
-      $http.post('http://localhost:8080/api/Uvalidate/', $scope.sign)
+      $http.post('/api/Uvalidate/', $scope.sign)
 
 
         .success(function (data) {
@@ -110,7 +110,7 @@ angular
 
     $scope.SubmitAddQuestionForm = function () {
       //posting data
-      $http.post('http://localhost:8080/api/questions', $scope.question)
+      $http.post('/api/questions', $scope.question)
 
 
         .success(function (data) {
@@ -201,7 +201,7 @@ angular
     }
 
     $scope.questionsChose.examOpa = {};
-    $http.get('http://localhost:8080/api/questions')
+    $http.get('/api/questions')
       .then(function (response) {
         $scope.questionGotFirst = response.data;
         $scope.processTopics();
@@ -251,7 +251,7 @@ angular
     $scope.newIds = $location.search().ids;
 
     if ($scope.newIds != null && $scope.newIds.length > 0) {
-      $http.get('http://localhost:8080/api/questions?ids=' + $scope.newIds)
+      $http.get('/api/questions?ids=' + $scope.newIds)
         .then(function (response) {
           $scope.questionForExam = response.data;
         });
@@ -282,7 +282,7 @@ angular
    }
    })*/
   .controller("checkAndSubmitController", function ($scope, $http) {
-    $http.get('http://localhost:8080/api/questions')
+    $http.get('/api/questions')
       .then(function (response) {
         $scope.questionGotExam = response.data;
       });
@@ -318,7 +318,7 @@ angular
     }
 
     //if ($scope.newIds != null && $scope.newIds.length > 0) {
-    $http.get('http://localhost:8080/api/questions?' + $scope.newURL)
+    $http.get('/api/questions?' + $scope.newURL)
       .then(function (response) {
 
         $scope.questionForExam = response.data;
@@ -333,7 +333,7 @@ angular
 
       });
     $scope.SubmitTakeExamForm = function () {
-      $http.post('http://localhost:8080/api/Qvalidate/', $scope.selec)
+      $http.post('/api/Qvalidate/', $scope.selec)
 
 
         .success(function (data) {
@@ -349,7 +349,7 @@ angular
   })
 
   .controller("scoreController", function ($scope, $http) {
-    $http.get('http://localhost:8080/api/Qvalidate/')
+    $http.get('/api/Qvalidate/')
       .then(function (response) {
         $scope.result = response.data;
       });
@@ -366,7 +366,7 @@ angular
       if ($scope.non.password === $scope.non.password_c) {
 
         $scope.user.password = $scope.non.password;*/
-        $http.post('http://localhost:8080/api/users', $scope.user)
+        $http.post('/api/users', $scope.user)
           .success(function (data) {
             window.alert("Registration sucessful");
 
