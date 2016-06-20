@@ -13,7 +13,7 @@ import core.User;
 
 @RegisterMapperFactory(BeanMapperFactory.class)
 public interface UserDAO {
-	@SqlUpdate("create table if not exists USERS (id int auto_increment primary key, name varchar(80), email varchar(80), password varchar(20), score int(11) )")
+	@SqlUpdate("create table if not exists USERS (id int auto_increment, name varchar(80), email varchar(80) primary key, password varchar(20), score int(11) )")
 	void createUserTable();
 
 	@SqlUpdate("insert into USERS (name, email, password, score) values (:name, :email, :password, :score)")
@@ -24,6 +24,9 @@ public interface UserDAO {
 
 	@SqlQuery("select * from USERS where id = :id")
 	User findUserById(@Bind("id") int id);
+
+	@SqlQuery("select * from USERS where email = :it")
+	User findUserByEmail(@Bind String email);
 
 	@SqlQuery("select * from USERS")
 	List<User> getAllUsers();

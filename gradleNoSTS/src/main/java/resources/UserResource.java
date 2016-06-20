@@ -52,8 +52,12 @@ public class UserResource {
 	@Timed
 	public void saveUser(User userSay) {
 		if (userSay != null) {
-			myDAO.insertUser(userSay);
-			throw new WebApplicationException(Response.Status.OK);
+			if (myDAO.findUserByEmail(userSay.getEmail()) != null) {
+				// USER ALREADY EXISTS CASE
+			} else {
+				myDAO.insertUser(userSay);
+				throw new WebApplicationException(Response.Status.OK);
+			}
 		} else {
 			throw new WebApplicationException(Status.BAD_REQUEST);
 		}

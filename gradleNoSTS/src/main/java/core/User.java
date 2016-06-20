@@ -23,6 +23,7 @@ public class User {
 		this.name = name;
 		this.email = email;
 		this.password = password;
+		this.score = 0;
 	}
 
 	public User(String name, String email) {

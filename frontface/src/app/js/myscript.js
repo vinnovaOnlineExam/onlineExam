@@ -1,8 +1,19 @@
-/**
- * Created by admin on 5/24/2016.*/
 
 angular
   .module('myModule', ['ngRoute'])
+  .directive('validPasswordC', function () {
+    return {
+      require: 'ngModel',
+      link: function ($scope, elm, attrs, ctrl) {
+        ctrl.$parsers.unshift(function (viewValue, $scope) {
+          var noMatch = viewValue != $scope.myForm.password.$viewValue
+          ctrl.$setValidity('noMatch', !noMatch)
+        })
+      }
+    }
+  })
+
+
   .config(function ($routeProvider) {
     $routeProvider
       .when("/", {
@@ -21,10 +32,6 @@ angular
         templateUrl: "templates/home.html",
         controller: "homeController"
       })
-      /*.when("/exam/postExam/takeExam", {
-       templateUrl: "templates/exam_instructions.html",
-       controller: "examTestController"
-       })*/
       .when("/exam", {
         templateUrl: "templates/admin_page.html",
         controller: "adminController"
@@ -75,14 +82,13 @@ angular
         controller: "scoreController"
       })
   })
+
   .controller("homeController", function ($scope) {
 
   })
 
   .controller("addQuestionController", function ($scope, $http) {
     $scope.question = {};
-
-    // $http.post('http://localhost:8080/api/questions',{"question":"How dodfsfadf you greet?","topic":"general","opa":"namasthe","opb":"hejsan","opc":"tjena","corr_op":"opa"})
 
     $scope.SubmitAddQuestionForm = function () {
       //posting data
@@ -165,7 +171,6 @@ angular
     $scope.newIds = "";
     $scope.Examlink = null;
     $scope.message = "examgenerated";
-//console.log($scope.questionsChose[0]);
 
     $scope.questionsChose = [];
 
@@ -200,20 +205,10 @@ angular
     $scope.GetQuestionsFromDB = function () {
       //posting data
       $scope.questionGotSecond = angular.copy($scope.questionGotFirst);
-      //TODO: Math.rand() to get $scope.noOfQuestions many random variables between 0 and questionGotFirst.length
-      // For i=0 to noOfQuestions add $scope.questionGotFirst[previously randomised number] to new array and return
       return $scope.questionGotSecond;
 
     }
- /*   $scope.addMoreQuestions = function () {
-      if ($scope.allQuestions == null) {
-        $scope.allQuestions += "topic=" + $scope.noOfQuestions.topic + "&size=" + $scope.noOfQuestions.size;
-      }
-      else {
-        $scope.allQuestions += "&topic=" + $scope.noOfQuestions.topic + "&size=" + $scope.noOfQuestions.size;
-        $scope.noOfQuestions = null;
-      }
-    }*/
+
       $scope.operateQuestions = function () {
 
         for(i=0;i<$scope.noOfQuestions.length;i++)
@@ -228,35 +223,8 @@ angular
 
         $scope.Examlink = $location.absUrl() + "/takeExam?" + $scope.allQuestions;
         $scope.allQuestions = null;
-        /*var numberEntered = $scope.noOfQuestions;
-         //return $scope.numberEntered;
-         //return $scope.noOfQuestions;
-         if ($scope.noOfQuestions <= $scope.questionGotFirst.length && $scope.noOfQuestions > 0) {
-         for (var i = 0; i < numberEntered; i++) {
 
-         // $scope.questionsChose{"examOpa"}.push($scope.questionGotFirst[i].opa);
-         console.log($scope.questionGotFirst[i]);
-         $scope.ids[i] = angular.copy($scope.questionGotFirst[i].id);
-         //posting submittedquestions
-         }
-
-         $scope.AbsUrl = $location.absUrl() + "/takeExam?ids=" + $scope.ids.toString();
-         $scope.Examlink = $location.absUrl() + "/takeExam?size="+ $scope.ids.toString();
-         //return $scope.AbsUrl;
-         */
-
-        /* }
-         else
-         {
-         $scope.p = 'please check the entered questions';
-         window.alert($scope.p);
-         console.log($scope.noOfQuestions);
-         console.log($scope.questionGotFirst.length);
-         }*/
       }
-
-// $scope.Examlink=angular.copy($scope.operateQuestions());
-//console.log($scope.Examlink);
 
       $scope.newIds = $location.search().ids;
 
@@ -264,7 +232,6 @@ angular
         $http.get('http://localhost:8080/api/questions?ids=' + $scope.newIds)
           .then(function (response) {
             $scope.questionForExam = response.data;
-            //console.log(questionForExam);
           });
 
       }
@@ -272,8 +239,6 @@ angular
     })
 
     .controller("aboutController", function ($location, $scope) {
-      //$scope.naresh="nana";
-      //$scope.AbsUrl = $location.absUrl();
 
     })
 
@@ -331,40 +296,16 @@ angular
       //if ($scope.newIds != null && $scope.newIds.length > 0) {
       $http.get('http://localhost:8080/api/questions?' + $scope.newURL)
         .then(function (response) {
-          /*$scope.random = function() {
-           return 0.24 - Math.random();
-           }*/
+
           $scope.questionForExam = response.data;
           shuffleArray($scope.questionForExam);
-          // console.log($scope.questionForExam);
 
 
           for (i = 0; i < $scope.questionForExam.length; i++) {
 
-            //$scope.selec[i].question = $scope.questionForExam[i].id;
             $scope.selec.push({"question": $scope.questionForExam[i].id.toString(), "option": ""});
 
           }
-          /*angular.forEach($scope.questionForExam.id,function (value) {
-           this.push(question+":"+value);
-           },$scope.selec);*/
-          //   console.log($scope.questionForExam);
-          //shuffle question
-          /*
-           var shuffleArray = function(array) {
-           var m = questionForExam.length, t, i;
-
-           while (m) {
-           i = Math.floor(Math.random() * m--);
-           t = questionForExam[m];
-           questionForExam[m] = questionForExam[i];
-           questionForExam[i] = t;
-           }
-
-           return questionForExam;
-           console.log(questionForExam);
-           }
-           */
 
         });
       $scope.SubmitTakeExamForm = function () {
@@ -380,21 +321,6 @@ angular
           })
       };
 
-      /*function doSomethingLater() {
-       //THis will run when HTTP is done.
-       if (angular.isObject($scope.questionForExam)) {
-       var noOfIds = $scope.questionForExam.length;
-       //window.alert("ids" + noOfIds);
-       for (i = 0; i < noOfIds; i++) {
-       console.log("from for", $scope.questionForExam[i]);
-       //window.alert("from for", $scope.questionForExam[i]);
-       }
-       }
-       }*/
-
-
-      //}
-
 
     })
 
@@ -402,168 +328,27 @@ angular
       $http.get('http://localhost:8080/api/Qvalidate/')
         .then(function (response) {
           $scope.result = response.data;
-          // console.log($scope.result);
         });
     })
-
-
-    /*if ($scope.selectedoption === $scope.q.corr_op) {
-     $scope.score[i] = 1;
-     console.log($scope.score[i])
-
-
-
-     }
-     else {
-     $scope.score[i] = 0;
-     console.log($scope.score[i])
-
-     }
-     */
-
-
-
-    //var sum = $scope.score.reduce(function(a, b) { return a + b; }, 0);
-    //console.log($scope.sum);
-
-    /*
-     for(i=0;i<newIds.length;i++)
-     {
-     if(selectedoption===corr_op) {
-     $scope.score[i] = 1
-     }
-     else {
-     $scope.score[i]=0
-     }
-     }
-     */
-
-    /*
-     $scope.questionsChose = [];
-     $scope.questionsChose.examOpa = {};
-     $http.get('http://localhost:8080/api/questions')
-     .then(function (response) {
-     $scope.questionGotFirst = response.data;
-     });
-     $scope.GetQuestionsFromDB = function () {
-     //posting data
-     $scope.questionGotSecond = angular.copy($scope.questionGotFirst);
-     //TODO: Math.rand() to get $scope.noOfQuestions many random variables between 0 and questionGotFirst.length
-     // For i=0 to noOfQues
-     tions add $scope.questionGotFirst[previously randomised number] to new array and return
-     return $scope.questionGotSecond;
-
-     }
-
-     $scope.shuffleArray = function(array) {
-     $scope.m = $scope.questionForExam.length,
-     $scope.t,
-     $scope.i;
-
-     while ($scope.m) {
-     $scope.i = Math.floor(Math.random() * $scope.m--);
-     $scope.t = $scope.questionForExam[m];
-     $scope.questionForExam[m] = $scope.questionForExam[i];
-     $scope.questionForExam[i] = t;
-     }
-
-     return $scope.questionForExam;
-     console.log($scope.questionForExam);
-     }
-
-     for (i = 0; i < 4; i++) {
-     if ($scope.selectedoption === $scope.questionShow..corr_op) {
-     answer[i] = 1;
-     }
-     else {
-     answer[i] = 0;
-     }
-     }
-     */
 
 
     .controller("postExamController", function ($scope) {
 
     })
     .controller("registerController", function ($scope, $http) {
+      $scope.user = {};
       $scope.UserRegister = function () {
-
-
-        $http.post('http://localhost:8080/api/users/', $scope.user)
-
-
+        console.log($scope.user);
+        $http.post('http://localhost:8080/api/users', $scope.user)
           .success(function (data) {
             window.alert("Registration sucessful");
 
             if (data.errors) {
               $scope.noExam = data.errors;
             }
-            //else $scope.selec = null;
           })
       }
     })
 
-/*
-
- .controller("postExamController", function ($scope, $location, $rootScope, $http) {
-
- $scope.questionGotFirst = [];
- $scope.noOfQuestions = null;
- $scope.ids = [];
- $scope.AbsUrl = null;
- $scope.newIds = "";
- $scope.questionForExam = [];
 
 
- $scope.questionsChose = [];
- $scope.questionsChose.examOpa = {};
- $http.get('http://localhost:8080/api/questions')
- .then(function (response) {
- $scope.questionGotFirst = response.data;
- });
- $scope.GetQuestionsFromDB = function () {
- //posting data
- $scope.questionGotSecond = angular.copy($scope.questionGotFirst);
- //TODO: Math.rand() to get $scope.noOfQuestions many random variables between 0 and questionGotFirst.length
- // For i=0 to noOfQuestions add $scope.questionGotFirst[previously randomised number] to new array and return
- return $scope.questionGotSecond;
-
- }
-
- $scope.operateQuestions = function () {
-
- var numberEntered = $scope.noOfQuestions;
- //return $scope.numberEntered;
- //return $scope.noOfQuestions;
-
- for (var i = 0; i < numberEntered; i++) {
-
- // $scope.questionsChose{"examOpa"}.push($scope.questionGotFirst[i].opa);
- console.log($scope.questionGotFirst[i]);
- $scope.ids[i] = angular.copy($scope.questionGotFirst[i].id);
- //posting submittedquestions
-
- }
- $scope.AbsUrl = $location.absUrl() + "/takeExam?ids=" + $scope.ids.toString();
-
- //console.log($rootScope.questionsChose[0]);
- return $scope.AbsUrl;
-
-
- }
-
-
- $scope.newIds = $location.search().ids;
-
- if ($scope.newIds != null && $scope.newIds.length > 0) {
- $http.get('http://localhost:8080/api/questions?ids=' + $scope.newIds)
- .then(function (response) {
- $scope.questionForExam = response.data;
- });
-
- }
- })
-
- //$scope.proceedToContinue = function () {
- // $location.path('takeExam/checkSubmit');
- -->*/
