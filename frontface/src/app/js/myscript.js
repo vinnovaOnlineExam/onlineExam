@@ -1,13 +1,14 @@
-
 angular
   .module('myModule', ['ngRoute'])
-  .directive('validPasswordC', function () {
+  .directive('validPasswordC', function ($window) {
     return {
       require: 'ngModel',
       link: function ($scope, elm, attrs, ctrl) {
         ctrl.$parsers.unshift(function (viewValue, $scope) {
           var noMatch = viewValue != $scope.myForm.password.$viewValue
           ctrl.$setValidity('noMatch', !noMatch)
+
+
         })
       }
     }
@@ -24,7 +25,7 @@ angular
         templateUrl: "templates/register.html",
         controller: "registerController"
       })
-     .when("/mycarousel", {
+      .when("/mycarousel", {
         templateUrl: "templates/onloadcontent.html",
         controller: ""
       })
@@ -83,6 +84,21 @@ angular
       })
   })
 
+  .controller("signInController",function ($scope) {
+    $scope.sign={};
+    $scope.signInForm = function () {
+      $http.post('http://localhost:8080/api/Uvalidate/', $scope.sign)
+
+
+        .success(function (data) {
+          
+          /*$location.path('takeExam');
+          if (data.errors) {
+            $scope.noExam = data.errors;
+          }*/
+        //  else $scope.sign = null;
+        })    }
+  })
   .controller("homeController", function ($scope) {
 
   })
@@ -209,139 +225,142 @@ angular
 
     }
 
-      $scope.operateQuestions = function () {
+    $scope.operateQuestions = function () {
 
-        for(i=0;i<$scope.noOfQuestions.length;i++)
-        {
-          if ($scope.allQuestions == null && $scope.noOfQuestions[i].size != null && $scope.noOfQuestions[i].size != 0) {
-            $scope.allQuestions = "topic=" + $scope.noOfQuestions[i].topic + "&size=" + $scope.noOfQuestions[i].size;
-          }
-          else if ( $scope.noOfQuestions[i].size != null && $scope.noOfQuestions[i].size != 0) {
-            $scope.allQuestions += "&topic=" + $scope.noOfQuestions[i].topic + "&size=" + $scope.noOfQuestions[i].size;
-          }
+      for (i = 0; i < $scope.noOfQuestions.length; i++) {
+        if ($scope.allQuestions == null && $scope.noOfQuestions[i].size != null && $scope.noOfQuestions[i].size != 0) {
+          $scope.allQuestions = "topic=" + $scope.noOfQuestions[i].topic + "&size=" + $scope.noOfQuestions[i].size;
         }
-
-        $scope.Examlink = $location.absUrl() + "/takeExam?" + $scope.allQuestions;
-        $scope.allQuestions = null;
+        else if ($scope.noOfQuestions[i].size != null && $scope.noOfQuestions[i].size != 0) {
+          $scope.allQuestions += "&topic=" + $scope.noOfQuestions[i].topic + "&size=" + $scope.noOfQuestions[i].size;
+        }
       }
-    
-    $scope.proceedToContinue = function () {
-      $location.path(Examlink);
+
+      $scope.Examlink = $location.absUrl() + "/takeExam?" + $scope.allQuestions;
+      $scope.allQuestions = null;
     }
 
-      $scope.newIds = $location.search().ids;
+    $scope.proceedToContinue = function () {
+      //  $location.path($scope.Examlink);
+      $location.path('takeExam/checkSubmit');
+    }
 
-      if ($scope.newIds != null && $scope.newIds.length > 0) {
-        $http.get('http://localhost:8080/api/questions?ids=' + $scope.newIds)
-          .then(function (response) {
-            $scope.questionForExam = response.data;
-          });
+    $scope.newIds = $location.search().ids;
 
-      }
-
-    })
-
-    .controller("aboutController", function ($location, $scope) {
-
-    })
-
-
-    .controller("careerController", function ($scope) {
-
-    })
-    .controller("adminController", function ($scope) {
-
-    })
-    .controller("contactController", function ($scope) {
-
-    })
-  /*  .controller("examInstructionsController", function ($scope, $location) {
-     $scope.proceedToContinue = function () {
-        $location.path($scope.Examlink);
-      }
-    })*/
-    .controller("checkAndSubmitController", function ($scope, $http) {
-      $http.get('http://localhost:8080/api/questions')
+    if ($scope.newIds != null && $scope.newIds.length > 0) {
+      $http.get('http://localhost:8080/api/questions?ids=' + $scope.newIds)
         .then(function (response) {
-          $scope.questionGotExam = response.data;
+          $scope.questionForExam = response.data;
         });
 
-    })
-    .controller("viewExamController", function ($scope, $rootScope) {
-      $scope.showQuestions = angular.copy($rootScope.questionsChose);
-    })
+    }
 
-    .controller("takeExamController", function ($scope, $location, $http) {
+  })
 
-      $scope.questionForExam = [];
-      $scope.selec = [];
+  .controller("aboutController", function ($location, $scope) {
 
-      $scope.newURL = $location.url();
-      $scope.newURL = $scope.newURL.substring($scope.newURL.indexOf("?")+1);
+  })
 
-      var shuffleArray = function (array) {
-        var m = array.length, t, i;
 
-        // While there remain elements to shuffle
-        while (m) {
-          // Pick a remaining element…
-          i = Math.floor(Math.random() * m--);
+  .controller("careerController", function ($scope) {
 
-          // And swap it with the current element.
-          t = array[m];
-          array[m] = array[i];
-          array[i] = t;
+  })
+  .controller("adminController", function ($scope) {
+
+  })
+  .controller("contactController", function ($scope) {
+
+  })
+  /*  .controller("examInstructionsController", function ($scope, $location) {
+   $scope.proceedToContinue = function () {
+   $location.path($scope.Examlink);
+   }
+   })*/
+  .controller("checkAndSubmitController", function ($scope, $http) {
+    $http.get('http://localhost:8080/api/questions')
+      .then(function (response) {
+        $scope.questionGotExam = response.data;
+      });
+
+  })
+  .controller("viewExamController", function ($scope, $rootScope) {
+    $scope.showQuestions = angular.copy($rootScope.questionsChose);
+  })
+
+  .controller("takeExamController", function ($scope, $location, $http) {
+
+    $scope.questionForExam = [];
+    $scope.selec = [];
+
+    $scope.newURL = $location.url();
+    $scope.newURL = $scope.newURL.substring($scope.newURL.indexOf("?") + 1);
+
+    var shuffleArray = function (array) {
+      var m = array.length, t, i;
+
+      // While there remain elements to shuffle
+      while (m) {
+        // Pick a remaining element…
+        i = Math.floor(Math.random() * m--);
+
+        // And swap it with the current element.
+        t = array[m];
+        array[m] = array[i];
+        array[i] = t;
+      }
+
+      return array;
+    }
+
+    //if ($scope.newIds != null && $scope.newIds.length > 0) {
+    $http.get('http://localhost:8080/api/questions?' + $scope.newURL)
+      .then(function (response) {
+
+        $scope.questionForExam = response.data;
+        shuffleArray($scope.questionForExam);
+
+
+        for (i = 0; i < $scope.questionForExam.length; i++) {
+
+          $scope.selec.push({"question": $scope.questionForExam[i].id.toString(), "option": ""});
+
         }
 
-        return array;
-      }
-
-      //if ($scope.newIds != null && $scope.newIds.length > 0) {
-      $http.get('http://localhost:8080/api/questions?' + $scope.newURL)
-        .then(function (response) {
-
-          $scope.questionForExam = response.data;
-          shuffleArray($scope.questionForExam);
+      });
+    $scope.SubmitTakeExamForm = function () {
+      $http.post('http://localhost:8080/api/Qvalidate/', $scope.selec)
 
 
-          for (i = 0; i < $scope.questionForExam.length; i++) {
-
-            $scope.selec.push({"question": $scope.questionForExam[i].id.toString(), "option": ""});
-
+        .success(function (data) {
+          $location.path('takeExam/score');
+          if (data.errors) {
+            $scope.noExam = data.errors;
           }
-
-        });
-      $scope.SubmitTakeExamForm = function () {
-        $http.post('http://localhost:8080/api/Qvalidate/', $scope.selec)
-
-
-          .success(function (data) {
-            $location.path('takeExam/score');
-            if (data.errors) {
-              $scope.noExam = data.errors;
-            }
-            //else $scope.selec = null;
-          })
-      };
+          //else $scope.selec = null;
+        })
+    };
 
 
-    })
+  })
 
-    .controller("scoreController", function ($scope, $http) {
-      $http.get('http://localhost:8080/api/Qvalidate/')
-        .then(function (response) {
-          $scope.result = response.data;
-        });
-    })
+  .controller("scoreController", function ($scope, $http) {
+    $http.get('http://localhost:8080/api/Qvalidate/')
+      .then(function (response) {
+        $scope.result = response.data;
+      });
+  })
 
 
-    .controller("postExamController", function ($scope) {
+  .controller("postExamController", function ($scope) {
 
-    })
-    .controller("registerController", function ($scope, $http) {
-      $scope.user = {};
-      $scope.UserRegister = function () {
-        console.log($scope.user);
+  })
+  .controller("registerController", function ($scope, $http) {
+    $scope.user = {};
+    $scope.UserRegister = function () {
+      /*console.log($scope.user);
+      if ($scope.non.password === $scope.non.password_c) {
+
+        $scope.user.password = $scope.non.password;*/
         $http.post('http://localhost:8080/api/users', $scope.user)
           .success(function (data) {
             window.alert("Registration sucessful");
@@ -350,8 +369,14 @@ angular
               $scope.noExam = data.errors;
             }
           })
-      }
-    })
+     /* }
+      else
+      {
+        $scope.non.nomatch = "passwords not matching";
+      }*/
+    }
+
+  })
 
 
 
