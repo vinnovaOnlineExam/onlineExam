@@ -75,7 +75,7 @@ angular
       })
       .when("/takeExam/checkSubmit", {
         templateUrl: "templates/check_and_submit.html",
-        controller: ""
+        controller: "checkSubmitController"
       })
 
       .when("/takeExam/score", {
@@ -91,7 +91,7 @@ angular
 
 
         .success(function (data) {
-          
+
           /*$location.path('takeExam');
           if (data.errors) {
             $scope.noExam = data.errors;
@@ -99,6 +99,8 @@ angular
         //  else $scope.sign = null;
         })    }
   })
+
+
   .controller("homeController", function ($scope) {
 
   })
@@ -237,6 +239,7 @@ angular
       }
 
       $scope.Examlink = $location.absUrl() + "/takeExam?" + $scope.allQuestions;
+
       $scope.allQuestions = null;
     }
 
@@ -256,7 +259,9 @@ angular
     }
 
   })
+  .controller("checkSubmitController", function ($scope) {
 
+  })
   .controller("aboutController", function ($location, $scope) {
 
   })
@@ -284,7 +289,7 @@ angular
 
   })
   .controller("viewExamController", function ($scope, $rootScope) {
-    $scope.showQuestions = angular.copy($rootScope.questionsChose);
+    //$scope.showQuestions = angular.copy($rootScope.questionsChose);
   })
 
   .controller("takeExamController", function ($scope, $location, $http) {
